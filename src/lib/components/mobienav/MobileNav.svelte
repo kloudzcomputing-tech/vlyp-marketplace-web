@@ -20,7 +20,7 @@
             width="20"
             height="20"
             viewBox="0 0 24 24"
-            fill={isHome ? '#fdb73e' : 'none'}
+            fill={isHome ? '#FC8019' : 'none'}
             stroke={isHome ? '#000' : '#6b7280'}
             stroke-width="2"
             stroke-linecap="round"
@@ -42,7 +42,7 @@
             width="20"
             height="20"
             viewBox="0 0 24 24"
-            fill={isCategories ? '#fdb73e' : 'none'}
+            fill={isCategories ? '#FC8019' : 'none'}
             stroke={isCategories ? '#000' : '#6b7280'}
             stroke-width="2"
           >
@@ -64,7 +64,7 @@
             width="20"
             height="20"
             viewBox="0 0 24 24"
-            fill={isDrops ? '#fdb73e' : 'none'}
+            fill={isDrops ? '#FC8019' : 'none'}
             stroke={isDrops ? '#000' : '#6b7280'}
             stroke-width="2"
           >
@@ -84,7 +84,7 @@
             width="20"
             height="20"
             viewBox="0 0 24 24"
-            fill={isAccount ? '#fdb73e' : 'none'}
+            fill={isAccount ? '#FC8019' : 'none'}
             stroke={isAccount ? '#000' : '#6b7280'}
             stroke-width="2"
           >

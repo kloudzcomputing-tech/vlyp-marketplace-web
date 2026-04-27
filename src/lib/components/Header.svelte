@@ -264,7 +264,7 @@
           class="text-2xl font-bold tracking-tight text-white transition-colors"
         >
           <span class="not-italic">
-            Cart<span class="text-[#f8c914] italic">ly</span>
+            Cart<span class="text-white italic">ly</span>
           </span>
         </a>
       </div>
@@ -307,7 +307,7 @@
 
             <button
               type="submit"
-              class="flex h-[46px] items-center justify-center bg-[#f8c914] px-5 text-[#14532d] transition hover:bg-[#e7b70f]"
+              class="flex h-[46px] items-center justify-center bg-[#E06D0E] px-5 text-white transition hover:bg-[#C85C00]"
               aria-label="Search"
             >
               <Search size={18} />
@@ -320,7 +320,7 @@
         <a
           href="https://seller.vlyp.store"
           target="_blank"
-          class="text-white hidden items-center rounded-lg border border-[#f8c914]/80 px-4 py-2 text-sm font-medium transition hover:bg-[#f8c914] hover:text-[#14532d] lg:flex"
+          class="text-white hidden items-center rounded-lg border border-white/60 px-4 py-2 text-sm font-medium transition hover:bg-white hover:text-[#FC8019] lg:flex"
         >
           Become a Seller
         </a>
@@ -334,7 +334,7 @@
             <ShoppingCartIcon size={24} class="text-white" />
             {#if $cart?.length > 0}
               <span
-                class="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs font-bold text-black bg-[#f8c914] rounded-full"
+                class="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs font-bold text-[#FC8019] bg-white rounded-full"
               >
                 {$cart?.length}
               </span>
@@ -605,7 +605,7 @@
 
   .category-item:hover,
   .category-item.active {
-    background: #fff7ed;
+    background: #FFF4E6;
     border-left-color: var(--new-brand-color);
     color: var(--new-brand-color);
   }
@@ -630,7 +630,7 @@
 
   .category-item:hover .category-icon,
   .category-item.active .category-icon {
-    background: #fff7ed;
+    background: #FFF4E6;
   }
 
   .category-name {
@@ -790,21 +790,21 @@
   .featured-banner {
     margin-top: 1.5rem;
     padding: 1rem;
-    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    background: linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%);
     border-radius: 0.75rem;
-    border: 1px solid #fed7aa;
+    border: 1px solid #FFD6A5;
   }
 
   .banner-title {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #9a3412;
+    color: #C85C00;
     margin: 0 0 0.25rem 0;
   }
 
   .banner-subtitle {
     font-size: 0.75rem;
-    color: #ea580c;
+    color: #E06D0E;
     margin: 0 0 0.75rem 0;
   }
 
@@ -821,7 +821,7 @@
   }
 
   .banner-button:hover {
-    background: #ea580c;
+    background: #E06D0E;
   }
 
   /* ============================================
