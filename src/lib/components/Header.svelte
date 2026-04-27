@@ -320,7 +320,7 @@
         <a
           href="https://seller.vlyp.store"
           target="_blank"
-          class="hidden items-center rounded-lg border border-[#f8c914]/80 px-4 py-2 text-sm font-medium text-[#f8c914] transition hover:bg-[#f8c914] hover:text-[#14532d] lg:flex"
+          class="text-white hidden items-center rounded-lg border border-[#f8c914]/80 px-4 py-2 text-sm font-medium transition hover:bg-[#f8c914] hover:text-[#14532d] lg:flex"
         >
           Become a Seller
         </a>
