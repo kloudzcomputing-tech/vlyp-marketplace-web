@@ -1,0 +1,42 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cartly",
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"compatibility_date": "2025-11-06",
+	"compatibility_flags": [
+		"nodejs_als"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"kv_namespaces": [
+		{
+			"binding": "VLYP_KV",
+			"id": "30bff20365c74eeabb7cdbb9094a83a2",
+			"preview_id": "2ceec23f69b14fd5baebf5e259f348c5"
+		}
+
+	],
+	"vars": {
+		"enviroment": "development",
+		"BASE_URL": "https://api.vlyp.store/api",
+		"PAYU_KEY": "Aqi9nT",
+		"PAYU_SALT": "BdSxIBtI2Vq1kc2kUyqX6nO3tybuBEzI",
+		"PAYU_BASE": "https://test.payu.in",
+	},
+	"services": [
+		{
+			"service": "cartly-worker-v2",
+			"binding": "CARTLY_WORKER_V2"
+		}
+	]
+	
+}

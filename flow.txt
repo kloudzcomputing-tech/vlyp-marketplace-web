@@ -1,0 +1,53 @@
+
+CHECKOUT FLOW
+COD
+    create order (order_status = PENDING, payment_status = PENDING)
+        seller approval
+            yes -> state changes to confirmed -> generate shipping -> generate label
+            no -> state changes to  cancelled
+                        
+Prepaid
+    create order (order_status = PENDING, payment_status = PENDING)
+        payu redirect success
+            -> payment_status = PAID and order_status = confirmed
+                -> generate shipping -> generate label 
+                    
+        payu redirect failure
+            -> payment_status = FAILED
+                -> delete order 
+
+
+SELLER ONBOARDING FLOW
+seller registration steps
+    [Personal Info -> Business Info -> Pickup Address -> Bank Details -> KYC Documents]
+        -> Seller account status = PENDING
+        -> [Master admin Apporval] [KYC Document verification, GST verification, etc ]
+           - APPROVED -> Seller account status = VERIFIED
+           - REJECT -> Seller account status = REJECTED with Reejction Reason
+                    -> Seller reregistered || seller updated doc || seller updated details -> [Master admin Apporval] 
+
+SELLER LISTING PRODUCTS 
+    -> - General Details [Title,Description,Category,tags,country]
+       - Media [IMAGES,VIDEO]
+       - Price [Selling Price,Compare at price,Cost per item]
+       - Stock Inventory [is stock trackable,stocks,SKU] 
+       - Options like (eg: Size[X,S,M], Color[Red,Blue])
+       - Variaitons (each variation has its own sku, price ,stock)
+       - Shipping (is physical items,weight,length,height,breadth)
+       - Care Instructions
+       - Features 
+       - Meta Fields
+            -> Product status is_active = 0
+            -> Product undergoes verification for Master admin
+                - verified -> Product Status is_active = 1
+                - rejected -> product status is_rejected = 1 and is_active = 0
+
+SELLER CREATING LIVE STORE link
+    -> Title,slug,is_active
+        -> select products to add
+            -> select proudct from the added ones 
+                -> can apply bulk discounts 
+
+SELLER GOING LIVE
+    -> select products / select store link (those with is_active = 1)
+        -> go live 
