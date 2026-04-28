@@ -1,4 +1,6 @@
 <script>
+  import MobileNav from '$lib/components/mobienav/MobileNav.svelte';
+
     let { data } = $props();
     // svelte-ignore state_referenced_locally
         let user = data?.customer;
@@ -352,4 +354,8 @@
             </div>
         </div>
     </div>
+
+
+
 </div>
+

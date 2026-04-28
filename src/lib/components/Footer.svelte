@@ -2,6 +2,8 @@
   import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "@lucide/svelte";
   import MobileNav from "./mobienav/MobileNav.svelte";
 
+  let { customer = null } = $props();
+
   // Social media links with brand colors
   const socialLinks = [
     { icon: Facebook, href: "https://facebook.com", label: "Facebook", color: "hover:text-blue-500 hover:border-blue-500" },
@@ -238,7 +240,7 @@
     </div>
   </div>
 </footer>
-<MobileNav/>
+<MobileNav {customer}/>
 <style>
   /* Smooth transitions for all interactive elements */
   footer a {

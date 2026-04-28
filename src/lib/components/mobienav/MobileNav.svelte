@@ -1,12 +1,17 @@
 <script>
-  import { page } from '$app/stores';
+  import { page } from '$app/state';
+  import LoginModal from '../auth/LoginModal.svelte';
 
-  $: path = $page.url.pathname;
+  let { customer = null } = $props();
 
-  $: isHome = path === '/';
-  $: isCategories = path === '/categories';
-  $: isDrops = path === '/drops';
-  $: isAccount = path === '/account';
+  let openLoginModal = $state(false);
+
+  let path = $derived(page.url.pathname);
+
+  let isHome = $derived(path === '/');
+  let isCategories = $derived(path === '/categories');
+  let isDrops = $derived(path === '/drops');
+  let isAccount = $derived(path === '/account');
 </script>
 
 <nav class="fixed bottom-0 left-0 right-0 w-full z-50 border-t border-black/5 sm:hidden bg-white">
@@ -77,26 +82,55 @@
         </span>
       </a>
 
-      <!-- Profile -->
-      <a href="/account" class="flex-1 flex flex-col items-center gap-1">
-        <div class="w-8 h-8 flex items-center justify-center">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill={isAccount ? '#FC8019' : 'none'}
-            stroke={isAccount ? '#000' : '#6b7280'}
-            stroke-width="2"
-          >
-            <circle cx="12" cy="8" r="5" />
-            <path d="M20 21a8 8 0 0 0-16 0" />
-          </svg>
-        </div>
-        <span class="text-xs {isAccount ? 'font-bold text-black' : 'font-medium text-gray-600'}">
-          Profile
-        </span>
-      </a>
+      <!-- Profile / Login -->
+      {#if customer}
+        <a href="/account" data-sveltekit-reload="true" class="flex-1 flex flex-col items-center gap-1">
+          <div class="w-8 h-8 flex items-center justify-center">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill={isAccount ? '#FC8019' : 'none'}
+              stroke={isAccount ? '#000' : '#6b7280'}
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="5" />
+              <path d="M20 21a8 8 0 0 0-16 0" />
+            </svg>
+          </div>
+          <span class="text-xs {isAccount ? 'font-bold text-black' : 'font-medium text-gray-600'}">
+            Account
+          </span>
+        </a>
+      {:else}
+        <button onclick={() => (openLoginModal = true)} class="flex-1 flex flex-col items-center gap-1 bg-transparent border-none cursor-pointer p-0">
+          <div class="w-8 h-8 flex items-center justify-center">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#6b7280"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="5" />
+              <path d="M20 21a8 8 0 0 0-16 0" />
+            </svg>
+          </div>
+          <span class="text-xs font-medium text-gray-600">
+            Login
+          </span>
+        </button>
+      {/if}
 
     </div>
   </div>
 </nav>
+
+<LoginModal
+  open={openLoginModal}
+  onClose={() => (openLoginModal = false)}
+  onLoggedIn={() => {
+    location.reload();
+  }}
+/>
