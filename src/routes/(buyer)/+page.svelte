@@ -464,7 +464,7 @@
       </div>
       <div class="mb-5 flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
         <div class="font-medium text-base text-gray-800 flex-shrink-0">
-          Cartly - Brand Directory
+          Vylp - Brand Directory
         </div>
         <div class="text-xs sm:text-sm text-gray-500">
           Most Searched · Brand Tags
@@ -619,7 +619,7 @@
             Your Online Shopping Destination
           </p>
           <p class="text-gray-500 mt-1">
-            Welcome to <span class="font-semibold text-gray-900">Cartly</span> - find
+            Welcome to <span class="font-semibold text-gray-900">Vylp</span> - find
             gadgets, decor, fashion, and more. Discover deals and essentials for
             every need.
           </p>
@@ -647,7 +647,7 @@
       </div>
       <div class="mt-8 text-xs text-gray-400 text-center">
         Inspired by modern e-commerce trends. Brand adapted as <strong
-          class="font-semibold">Cartly</strong
+          class="font-semibold">Vylp</strong
         >.
       </div>
     </div>

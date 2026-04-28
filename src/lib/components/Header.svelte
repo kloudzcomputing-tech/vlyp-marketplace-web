@@ -264,7 +264,7 @@
           class="text-2xl font-bold tracking-tight text-white transition-colors"
         >
           <span class="not-italic">
-            Cart<span class="text-white italic">ly</span>
+            Vl<span class="text-white italic">yp</span>
           </span>
         </a>
       </div>
@@ -350,7 +350,7 @@
             class="flex items-center gap-2 transition-colors"
           >
             <UserIcon size={24} class="text-white" />
-            <span class="hidden lg:inline text-sm font-medium">Account</span>
+            <span class="hidden lg:inline text-sm font-medium text-white">Account</span>
           </a>
         {:else}
           <button
