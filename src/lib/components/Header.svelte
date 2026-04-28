@@ -253,9 +253,9 @@
     </div>
   {/if}
 
-  <div class="bg-[var(--primary-color)] px-4 py-3">
+  <div class="bg-[var(--primary-color)]  py-3">
     <div
-      class="mx-auto flex max-w-7xl items-center justify-between gap-3 md:gap-6"
+      class="mx-auto flex max-w-7xl items-center justify-between gap-3 md:gap-6 px-3  md:px-4"
     >
       <div class="flex min-w-0 flex-shrink-0 items-center">
         <a
@@ -389,11 +389,11 @@
 
   {#if showMenu}
     <div class="w-full border-t bg-white border-b border-gray-100 relative hidden md:block mega-menu">
-      <div class="max-w-[1480px] mx-auto px-4">
+      <div class="mx-auto max-w-7xl  px-3 md:px-4">
         <nav class="mega-menu-nav">
           <ul class="flex items-center">
             {#each menu as item}
-              <li class="mega-menu-item group">
+              <li class="mega-menu-item group ">
                 <a href={item.path} class="mega-menu-link">
                   <span>{item.label}</span>
                   <ChevronDownIcon size={14} class="chevron-icon" />
@@ -514,6 +514,9 @@
     transition: all 0.2s ease;
     position: relative;
   }
+    .mega-menu-link:first-child{
+      padding-left: 0;
+    }
 
   .mega-menu-link::after {
     content: "";
