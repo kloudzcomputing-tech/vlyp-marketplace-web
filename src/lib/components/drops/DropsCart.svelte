@@ -280,14 +280,14 @@
   use:inView={{ threshold: 0.5 }}
   oninview={onInView}
   bind:this={container}
-  class=" w-full snap-end overflow-hidden bg-[#080b18] h-[calc(100dvh-74px)] flex items-center justify-center"
+  class=" w-full snap-end overflow-hidden bg-[#080b18] h-full flex items-center justify-center"
 >
-  <div class="relative overflow-hidden rells-section max-w-[890px] w-full">
-    <div class="mx-auto flex w-full items-center justify-center px-0 sm:px-4">
+  <div class="relative overflow-hidden rells-section max-w-[890px] w-full h-full">
+    <div class="mx-auto flex w-full items-center justify-center px-0 sm:px-4  h-full">
       <!-- svelte-ignore a11y_media_has_caption -->
 
       <div
-        class="h-[80vh] md:h-[85vh] relative max-w-[340px] md:max-w-auto w-full md:w-[50%] overflow-hidden sm:rounded-[15px] sm:border sm:border-white/10"
+        class=" h-full md:h-[85vh] relative w-full md:max-w-auto w-full md:w-[50%] overflow-hidden sm:rounded-[15px] sm:border sm:border-white/10"
         onmouseenter={() => {
           isVideoHovered = true;
           showCenterControl = true;
@@ -418,7 +418,7 @@
 
         <button
           onclick={() => (showCartPanel = !showCartPanel)}
-          class="absolute bottom-[23px] right-[14px] bg-amber-400 text-[#0f3d2e] p-[7px] rounded-full hover:scale-110 transition-transform z-40 md:hidden"
+          class="absolute bottom-[23px] right-[14px] bg-[var(--primary-color)] text-white p-[7px] rounded-full hover:scale-110 transition-transform z-40 md:hidden"
         >
           <ShoppingBag size={24} strokeWidth={2.5} />
         </button>

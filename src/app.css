@@ -172,3 +172,16 @@ body:has(.rells-section) .mega-menu,
 body:has(.rells-section) footer {
     display: none;
 }
+
+
+
+
+
+
+@media only screen and (max-width: 640px) {
+body:has(.rells-section) .main-header,
+body:has(.rells-section) footer {
+    display: none;
+}
+
+}

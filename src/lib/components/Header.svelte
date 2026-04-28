@@ -225,7 +225,7 @@
   );
 </script>
 
-<div class="sticky bg-white top-0 left-0 right-0 z-50 shadow-sm">
+<div class="sticky bg-white top-0 left-0 right-0 z-50 shadow-sm main-header">
   {#if customer?.referral_code}
     <div
       class="border-b border-amber-200 bg-amber-50 px-4 py-2.5 text-slate-900"
