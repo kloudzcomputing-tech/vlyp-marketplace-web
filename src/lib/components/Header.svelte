@@ -8,6 +8,7 @@
     ChevronDownIcon,
     ChevronRightIcon,
     Search,
+    MapPinIcon,
   } from "@lucide/svelte";
   import LoginModal from "./auth/LoginModal.svelte";
 
@@ -15,6 +16,8 @@
   let searchQuery = $state("");
   let openLoginModal = $state(false);
   let activeCategoryId = $state("popular");
+  let addresses = $state([]);
+  let selectedAddress = $state(null);
 
   const menu = [
     {
@@ -223,6 +226,36 @@
   let activeCategory = $derived(
     menu.find((m) => m.id === activeCategoryId) || menu[0],
   );
+
+  let mobileAddressTitle = $derived(selectedAddress?.label || "Home");
+  let mobileAddressLine = $derived(
+    selectedAddress
+      ? [selectedAddress.line1, selectedAddress.city, selectedAddress.state]
+          .filter(Boolean)
+          .join(", ")
+      : "Select delivery address",
+  );
+
+  onMount(async () => {
+    if (!customer) return;
+
+    try {
+      const response = await fetch("/api/address", {
+        method: "GET",
+      });
+      const result = await response.json();
+
+      if (result?.status) {
+        addresses = result.data?.addresses || [];
+        selectedAddress =
+          addresses.find((address) => Number(address.is_default) === 1) ||
+          addresses[0] ||
+          null;
+      }
+    } catch (error) {
+      console.error("Failed to load addresses for header", error);
+    }
+  });
 </script>
 
 <div class="sticky bg-white top-0 left-0 right-0 z-50 shadow-sm main-header">
@@ -257,7 +290,7 @@
     <div
       class="mx-auto flex max-w-7xl items-center justify-between gap-3 md:gap-6 px-3  md:px-4"
     >
-      <div class="flex min-w-0 flex-shrink-0 items-center">
+      <div class="flex min-w-0 flex-shrink-0 items-center gap-3">
         <a
           href="/"
           data-sveltekit-reload="true"
@@ -267,6 +300,35 @@
             Vl<span class="text-white italic">yp</span>
           </span>
         </a>
+
+        <button
+          type="button"
+          onclick={() => {
+            if (customer) {
+              goto("/account/addresses");
+              return;
+            }
+
+            openLoginModal = true;
+          }}
+          class="flex min-w-0 max-w-[200px] flex-1 items-center gap-2 rounded-xl   text-left text-white backdrop-blur-sm md:hidden"
+          aria-label="Delivery address"
+        >
+          <span
+            class="flex  flex-shrink-0 items-center justify-center rounded-full text-white"
+          >
+            <MapPinIcon size={16} />
+          </span>
+          <span class="min-w-0 flex-1">
+            <span class="flex items-center gap-1 text-[11px] font-semibold leading-none">
+              <span class="truncate">{mobileAddressTitle}</span>
+              <ChevronDownIcon size={14} class="flex-shrink-0" />
+            </span>
+            <span class="mt-1 block truncate text-[10px] text-white/80">
+              {mobileAddressLine}
+            </span>
+          </span>
+        </button>
       </div>
 
       <div class="hidden max-w-2xl flex-1 md:block">
@@ -347,7 +409,7 @@
           <a
             href="/account"
             data-sveltekit-reload="true"
-            class="flex items-center gap-2 transition-colors"
+            class="sm:flex items-center gap-2 transition-colors      hidden"
           >
             <UserIcon size={24} class="text-white" />
             <span class="hidden lg:inline text-sm font-medium text-white">Account</span>
@@ -365,7 +427,7 @@
     </div>
   </div>
 
-  <div class="border-b border-slate-200 bg-white px-4 py-3 md:hidden">
+  <div class="border-b border-slate-200 bg-white px-3  py-3 md:hidden">
     <div class="mx-auto max-w-7xl">
       <form onsubmit={handleSearch}>
         <div class="flex items-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-sm">
