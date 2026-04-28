@@ -18,7 +18,7 @@
         numOfStars: 5,
         starConfig: {
             size: 26,
-            filledColor: "#FC8019",
+            filledColor: "#fe5005",
             unfilledColor: "#0002",
         },
     };

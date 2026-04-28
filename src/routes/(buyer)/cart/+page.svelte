@@ -177,7 +177,7 @@
     </div>
     <!-- Mobile sticky footer -->
     <div
-        class="sticky sm:hidden bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl z-50 px-4 py-3 space-x-4 flex items-center justify-between"
+        class="sticky sm:hidden bottom-0 left-0 right-0 z-[9] bg-white border-t border-gray-200 shadow-2xl px-4 py-3 space-x-4 flex items-center justify-between"
         style="
     padding-bottom: max(70px, env(safe-area-inset-bottom));
   "

@@ -356,7 +356,7 @@
           {/if}
         </button>
 
-        <div class="absolute right-3 bottom-24 z-[9999] flex flex-col gap-6">
+        <div class="absolute right-3 bottom-24 z-[9] flex flex-col gap-6">
           <div class="text-center">
             <button
               onclick={handleLike}

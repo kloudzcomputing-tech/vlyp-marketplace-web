@@ -94,7 +94,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 50;
+    z-index: 9999;
     padding: 0;
     pointer-events: none;
   }
@@ -146,11 +146,11 @@
 
   /* Active state */
   .nav-item.active {
-    color: #FC8019;
+    color: #fe5005;
   }
 
   .nav-item.active .nav-label {
-    color: #FC8019;
+    color: #fe5005;
     font-weight: 700;
   }
 
@@ -164,7 +164,7 @@
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #FC8019;
+    background: #fe5005;
     animation: dotPop 0.3s ease forwards;
   }
 
@@ -186,13 +186,13 @@
   }
 
   .nav-item.active .nav-icon-wrap {
-    background: rgba(252, 128, 25, 0.12);
+    background: rgba(254, 80, 5, 0.12);
     transform: translateY(-2px);
   }
 
   .nav-item.active .nav-icon-wrap svg {
-    fill: rgba(252, 128, 25, 0.15);
-    stroke: #FC8019;
+    fill: rgba(254, 80, 5, 0.15);
+    stroke: #fe5005;
   }
 
   /* ──────── Label ──────── */

@@ -307,7 +307,7 @@
 
             <button
               type="submit"
-              class="flex h-[46px] items-center justify-center bg-[#E06D0E] px-5 text-white transition hover:bg-[#C85C00]"
+              class="flex h-[46px] items-center justify-center bg-[var(--primary-color-light)] px-5 text-white transition hover:bg-[var(--primary-color-hover)]"
               aria-label="Search"
             >
               <Search size={18} />
@@ -320,7 +320,7 @@
         <a
           href="https://seller.vlyp.store"
           target="_blank"
-          class="text-white hidden items-center rounded-lg border border-white/60 px-4 py-2 text-sm font-medium transition hover:bg-white hover:text-[#FC8019] lg:flex"
+          class="text-white hidden items-center rounded-lg border border-white/60 px-4 py-2 text-sm font-medium transition hover:bg-white hover:text-[var(--primary-color)] lg:flex"
         >
           Become a Seller
         </a>
@@ -334,7 +334,7 @@
             <ShoppingCartIcon size={24} class="text-white" />
             {#if $cart?.length > 0}
               <span
-                class="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs font-bold text-[#FC8019] bg-white rounded-full"
+                class="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs font-bold text-[var(--primary-color)] bg-white rounded-full"
               >
                 {$cart?.length}
               </span>
@@ -605,7 +605,7 @@
 
   .category-item:hover,
   .category-item.active {
-    background: #FFF4E6;
+    background: #fff2ec;
     border-left-color: var(--new-brand-color);
     color: var(--new-brand-color);
   }
@@ -630,7 +630,7 @@
 
   .category-item:hover .category-icon,
   .category-item.active .category-icon {
-    background: #FFF4E6;
+    background: #fff2ec;
   }
 
   .category-name {
@@ -790,27 +790,27 @@
   .featured-banner {
     margin-top: 1.5rem;
     padding: 1rem;
-    background: linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%);
+    background: linear-gradient(135deg, #fff2ec 0%, #ffe0d1 100%);
     border-radius: 0.75rem;
-    border: 1px solid #FFD6A5;
+    border: 1px solid #ffb899;
   }
 
   .banner-title {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #C85C00;
+    color: #cc4003;
     margin: 0 0 0.25rem 0;
   }
 
   .banner-subtitle {
     font-size: 0.75rem;
-    color: #E06D0E;
+    color: #e54804;
     margin: 0 0 0.75rem 0;
   }
 
   .banner-button {
     font-size: 0.75rem;
-    background: var(--new-brand-color, #f97316);
+    background: var(--new-brand-color, #fe5005);
     color: white;
     padding: 0.375rem 0.75rem;
     border-radius: 0.375rem;
@@ -821,7 +821,7 @@
   }
 
   .banner-button:hover {
-    background: #E06D0E;
+    background: var(--primary-color-light, #e54804);
   }
 
   /* ============================================
