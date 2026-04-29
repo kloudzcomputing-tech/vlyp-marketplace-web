@@ -15,7 +15,7 @@
   const options = {
     type: "loop",
     perPage: 1,
-    autoplay: true,
+    autoplay: false,
     interval: 4000,
     pauseOnHover: true,
     arrows: false,
