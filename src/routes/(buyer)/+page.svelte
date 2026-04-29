@@ -671,15 +671,15 @@
 
   <section class="px-3 pb-10 md:px-4 md:pb-14">
     <div class="mx-auto w-full max-w-7xl">
-      <div class="rounded-[1.5rem] bg-[var(--primary-color)] px-5 py-6 text-white shadow-sm sm:px-8 sm:py-7">
+      <div class="rounded-[1.5rem] bg-gradient-to-r from-[#ff7a18] via-[#ff6b6b] to-[#ff4d8d] px-5 py-6 text-white shadow-[0_18px_45px_-24px_rgba(255,77,141,0.72)] sm:px-8 sm:py-7">
         <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div class="flex items-center gap-4">
-            <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-white/20">
+            <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/18 backdrop-blur-sm">
               <Gift class="h-7 w-7" />
             </div>
 
             <div>
-              <div class="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">
+              <div class="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/85">
                 <Sparkles class="h-3.5 w-3.5" />
                 Refer & Earn
               </div>
@@ -698,18 +698,18 @@
               <button
                 type="button"
                 onclick={copyReferralLink}
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--primary-color)] transition hover:bg-orange-50"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#ff4d8d] shadow-[0_12px_30px_-16px_rgba(0,0,0,0.45)] transition hover:bg-rose-50"
               >
                 Refer Now
                 <ArrowRight class="h-4 w-4" />
               </button>
-              <p class="text-xs font-medium text-white/80">
+              <p class="text-xs font-medium text-white/85">
                 Code: {data.customer.referral_code}
               </p>
             {:else}
               <a
                 href="/login"
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--primary-color)] transition hover:bg-orange-50"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#ff4d8d] shadow-[0_12px_30px_-16px_rgba(0,0,0,0.45)] transition hover:bg-rose-50"
               >
                 Refer Now
                 <ArrowRight class="h-4 w-4" />
