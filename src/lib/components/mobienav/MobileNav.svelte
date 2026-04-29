@@ -9,8 +9,8 @@
   let path = $derived(page.url.pathname);
 
   let isHome = $derived(path === '/');
-  let isCategories = $derived(path === '/categories');
   let isDrops = $derived(path === '/drops');
+  let isSearch = $derived(path === '/search');
   let isAccount = $derived(path === '/account');
 </script>
 
@@ -29,19 +29,6 @@
       <span class="nav-label">Home</span>
     </a>
 
-    <!-- Categories -->
-    <a href="/categories" class="nav-item" class:active={isCategories} aria-label="Categories">
-      <div class="nav-icon-wrap">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <rect width="7" height="7" x="3" y="3" rx="1.5" />
-          <rect width="7" height="7" x="14" y="3" rx="1.5" />
-          <rect width="7" height="7" x="14" y="14" rx="1.5" />
-          <rect width="7" height="7" x="3" y="14" rx="1.5" />
-        </svg>
-      </div>
-      <span class="nav-label">Categories</span>
-    </a>
-
     <!-- Reels -->
     <a href="/drops" class="nav-item" class:active={isDrops} aria-label="Reels">
       <div class="nav-icon-wrap">
@@ -51,6 +38,17 @@
         </svg>
       </div>
       <span class="nav-label">Reels</span>
+    </a>
+
+    <!-- Search -->
+    <a href="/search" class="nav-item" class:active={isSearch} aria-label="Search">
+      <div class="nav-icon-wrap">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+      </div>
+      <span class="nav-label">Search</span>
     </a>
 
     <!-- Profile / Login -->
