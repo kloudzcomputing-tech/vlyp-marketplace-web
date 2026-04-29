@@ -1,10 +1,12 @@
 <script>
   import {
+    ArrowRight,
     ChevronLast,
     ChevronsRight,
     Component,
+    Gift,
     Heart,
-    IndianRupeeIcon,
+    Sparkles,
   } from "@lucide/svelte";
   let { data } = $props();
   let masterCat = data?.masterCat;
@@ -663,6 +665,58 @@
         Inspired by modern e-commerce trends. Brand adapted as <strong
           class="font-semibold">Vylp</strong
         >.
+      </div>
+    </div>
+  </section>
+
+  <section class="px-3 pb-10 md:px-4 md:pb-14">
+    <div class="mx-auto w-full max-w-7xl">
+      <div class="rounded-[1.5rem] bg-[var(--primary-color)] px-5 py-6 text-white shadow-sm sm:px-8 sm:py-7">
+        <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div class="flex items-center gap-4">
+            <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-white/20">
+              <Gift class="h-7 w-7" />
+            </div>
+
+            <div>
+              <div class="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">
+                <Sparkles class="h-3.5 w-3.5" />
+                Refer & Earn
+              </div>
+              <h2 class="text-xl font-bold leading-tight sm:text-3xl">
+                Invite Friends & Get Rewards
+              </h2>
+              <p class="mt-1 max-w-2xl text-sm leading-6 text-white/90 sm:text-base">
+                Get ₹100 for every friend who shops with us. Your rewards are
+                just a share away!
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2 sm:items-end">
+            {#if data?.customer?.referral_code}
+              <button
+                type="button"
+                onclick={copyReferralLink}
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--primary-color)] transition hover:bg-orange-50"
+              >
+                Refer Now
+                <ArrowRight class="h-4 w-4" />
+              </button>
+              <p class="text-xs font-medium text-white/80">
+                Code: {data.customer.referral_code}
+              </p>
+            {:else}
+              <a
+                href="/login"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--primary-color)] transition hover:bg-orange-50"
+              >
+                Refer Now
+                <ArrowRight class="h-4 w-4" />
+              </a>
+            {/if}
+          </div>
+        </div>
       </div>
     </div>
   </section>
