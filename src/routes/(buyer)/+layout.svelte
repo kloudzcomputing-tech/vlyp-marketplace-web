@@ -32,5 +32,5 @@
         {@render children?.()}
     </main>
     
-    <Footer/>
+    <Footer {customer}/>
 </div>

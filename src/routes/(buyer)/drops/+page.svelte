@@ -5,7 +5,6 @@
   let reels = $derived(data?.reels ?? []);
   let user = $derived(data?.user ?? null);
 
-
   let limit = $state(20);
   let offset = $state(0);
   let matrix = $state({});
@@ -32,7 +31,7 @@
 </script>
 
 <div
-  class=" h-[calc(100dvh-125px)] md:h-[calc(100dvh-74px)]
+  class=" h-[calc(100dvh-73px)] sm:h-[calc(100dvh-113px)] md:h-[calc(100dvh-72px)]
     overflow-y-scroll
     snap-y
     snap-mandatory

@@ -14,11 +14,14 @@
   --popover-foreground: oklch(0.129 0.042 264.695);
   --primary: oklch(0.208 0.042 265.755);
   --primary-foreground: oklch(0.984 0.003 247.858);
-  --primary-color: #FC8019;
-  --primary-color-accent: #FC8019;
-  --primary-color-light: #E06D0E;
-  --primary-color-hover: #C85C00;
-  --primary-color-text: #fff; 
+  --primary-color: #fe5005;
+  --primary-color-accent: #fe5005;
+  --primary-color-light: #e54804;
+  --primary-color-hover: #cc4003;
+  --primary-color-text: #fff;
+  --secondary-color: #1ba672;
+  --secondary-color-light: #20bf83;
+  --secondary-color-hover: #178f60;
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -42,7 +45,7 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
-  --new-brand-color: #FC8019;
+  --new-brand-color: #fe5005;
 }
 
 .dark {
@@ -54,10 +57,13 @@
   --popover-foreground: oklch(0.984 0.003 247.858);
   --primary: oklch(0.929 0.013 255.508);
   --primary-foreground: oklch(0.208 0.042 265.755);
-  --primary-color: #E06D0E;
-  --primary-color-light: #C85C00;
-  --primary-color-hover: #A34D00;
-  --primary-color-text: #fff; 
+  --primary-color: #e54804;
+  --primary-color-light: #cc4003;
+  --primary-color-hover: #b33802;
+  --primary-color-text: #fff;
+  --secondary-color: #178f60;
+  --secondary-color-light: #1ba672;
+  --secondary-color-hover: #137a52;
   --secondary: oklch(0.279 0.041 260.031);
   --secondary-foreground: oklch(0.984 0.003 247.858);
   --muted: oklch(0.279 0.041 260.031);
@@ -165,4 +171,17 @@ button{
 body:has(.rells-section) .mega-menu,
 body:has(.rells-section) footer {
     display: none;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 640px) {
+body:has(.rells-section) .main-header,
+body:has(.rells-section) footer {
+    display: none;
+}
+
 }

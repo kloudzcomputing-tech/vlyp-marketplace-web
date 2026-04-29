@@ -8,6 +8,7 @@
     ChevronDownIcon,
     ChevronRightIcon,
     Search,
+    MapPinIcon,
   } from "@lucide/svelte";
   import LoginModal from "./auth/LoginModal.svelte";
 
@@ -15,6 +16,8 @@
   let searchQuery = $state("");
   let openLoginModal = $state(false);
   let activeCategoryId = $state("popular");
+  let addresses = $state([]);
+  let selectedAddress = $state(null);
 
   const menu = [
     {
@@ -223,9 +226,39 @@
   let activeCategory = $derived(
     menu.find((m) => m.id === activeCategoryId) || menu[0],
   );
+
+  let mobileAddressTitle = $derived(selectedAddress?.label || "Home");
+  let mobileAddressLine = $derived(
+    selectedAddress
+      ? [selectedAddress.line1, selectedAddress.city, selectedAddress.state]
+          .filter(Boolean)
+          .join(", ")
+      : "Select delivery address",
+  );
+
+  onMount(async () => {
+    if (!customer) return;
+
+    try {
+      const response = await fetch("/api/address", {
+        method: "GET",
+      });
+      const result = await response.json();
+
+      if (result?.status) {
+        addresses = result.data?.addresses || [];
+        selectedAddress =
+          addresses.find((address) => Number(address.is_default) === 1) ||
+          addresses[0] ||
+          null;
+      }
+    } catch (error) {
+      console.error("Failed to load addresses for header", error);
+    }
+  });
 </script>
 
-<div class="sticky bg-white top-0 left-0 right-0 z-50 shadow-sm">
+<div class="sticky bg-white top-0 left-0 right-0 z-50 shadow-sm main-header">
   {#if customer?.referral_code}
     <div
       class="border-b border-amber-200 bg-amber-50 px-4 py-2.5 text-slate-900"
@@ -253,11 +286,11 @@
     </div>
   {/if}
 
-  <div class="bg-[var(--primary-color)] px-4 py-3">
+  <div class="bg-[var(--primary-color)]  py-3">
     <div
-      class="mx-auto flex max-w-7xl items-center justify-between gap-3 md:gap-6"
+      class="mx-auto flex max-w-7xl items-center justify-between gap-3 md:gap-6 px-3  md:px-4"
     >
-      <div class="flex min-w-0 flex-shrink-0 items-center">
+      <div class="flex min-w-0 flex-shrink-0 items-center gap-3">
         <a
           href="/"
           data-sveltekit-reload="true"
@@ -267,6 +300,35 @@
             Vl<span class="text-white italic">yp</span>
           </span>
         </a>
+
+        <button
+          type="button"
+          onclick={() => {
+            if (customer) {
+              goto("/account/addresses");
+              return;
+            }
+
+            openLoginModal = true;
+          }}
+          class="flex min-w-0 max-w-[200px] flex-1 items-center gap-2 rounded-xl   text-left text-white backdrop-blur-sm md:hidden"
+          aria-label="Delivery address"
+        >
+          <span
+            class="flex  flex-shrink-0 items-center justify-center rounded-full text-white"
+          >
+            <MapPinIcon size={16} />
+          </span>
+          <span class="min-w-0 flex-1">
+            <span class="flex items-center gap-1 text-[11px] font-semibold leading-none">
+              <span class="truncate">{mobileAddressTitle}</span>
+              <ChevronDownIcon size={14} class="flex-shrink-0" />
+            </span>
+            <span class="mt-1 block truncate text-[10px] text-white/80">
+              {mobileAddressLine}
+            </span>
+          </span>
+        </button>
       </div>
 
       <div class="hidden max-w-2xl flex-1 md:block">
@@ -307,7 +369,7 @@
 
             <button
               type="submit"
-              class="flex h-[46px] items-center justify-center bg-[#E06D0E] px-5 text-white transition hover:bg-[#C85C00]"
+              class="flex h-[46px] items-center justify-center bg-[var(--primary-color-light)] px-5 text-white transition hover:bg-[var(--primary-color-hover)]"
               aria-label="Search"
             >
               <Search size={18} />
@@ -320,7 +382,7 @@
         <a
           href="https://seller.vlyp.store"
           target="_blank"
-          class="text-white hidden items-center rounded-lg border border-white/60 px-4 py-2 text-sm font-medium transition hover:bg-white hover:text-[#FC8019] lg:flex"
+          class="text-white hidden items-center rounded-lg border border-white/60 px-4 py-2 text-sm font-medium transition hover:bg-white hover:text-[var(--primary-color)] lg:flex"
         >
           Become a Seller
         </a>
@@ -334,7 +396,7 @@
             <ShoppingCartIcon size={24} class="text-white" />
             {#if $cart?.length > 0}
               <span
-                class="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs font-bold text-[#FC8019] bg-white rounded-full"
+                class="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs font-bold text-[var(--primary-color)] bg-white rounded-full"
               >
                 {$cart?.length}
               </span>
@@ -347,7 +409,7 @@
           <a
             href="/account"
             data-sveltekit-reload="true"
-            class="flex items-center gap-2 transition-colors"
+            class="sm:flex items-center gap-2 transition-colors      hidden"
           >
             <UserIcon size={24} class="text-white" />
             <span class="hidden lg:inline text-sm font-medium text-white">Account</span>
@@ -365,7 +427,7 @@
     </div>
   </div>
 
-  <div class="border-b border-slate-200 bg-white px-4 py-3 md:hidden">
+  <div class="border-b border-slate-200 bg-white px-3  py-3 md:hidden">
     <div class="mx-auto max-w-7xl">
       <form onsubmit={handleSearch}>
         <div class="flex items-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-sm">
@@ -389,11 +451,11 @@
 
   {#if showMenu}
     <div class="w-full border-t bg-white border-b border-gray-100 relative hidden md:block mega-menu">
-      <div class="max-w-[1480px] mx-auto px-4">
+      <div class="mx-auto max-w-7xl  px-3 md:px-4">
         <nav class="mega-menu-nav">
           <ul class="flex items-center">
             {#each menu as item}
-              <li class="mega-menu-item group">
+              <li class="mega-menu-item group ">
                 <a href={item.path} class="mega-menu-link">
                   <span>{item.label}</span>
                   <ChevronDownIcon size={14} class="chevron-icon" />
@@ -514,6 +576,9 @@
     transition: all 0.2s ease;
     position: relative;
   }
+    .mega-menu-link:first-child{
+      padding-left: 0;
+    }
 
   .mega-menu-link::after {
     content: "";
@@ -605,7 +670,7 @@
 
   .category-item:hover,
   .category-item.active {
-    background: #FFF4E6;
+    background: #fff2ec;
     border-left-color: var(--new-brand-color);
     color: var(--new-brand-color);
   }
@@ -630,7 +695,7 @@
 
   .category-item:hover .category-icon,
   .category-item.active .category-icon {
-    background: #FFF4E6;
+    background: #fff2ec;
   }
 
   .category-name {
@@ -790,27 +855,27 @@
   .featured-banner {
     margin-top: 1.5rem;
     padding: 1rem;
-    background: linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%);
+    background: linear-gradient(135deg, #fff2ec 0%, #ffe0d1 100%);
     border-radius: 0.75rem;
-    border: 1px solid #FFD6A5;
+    border: 1px solid #ffb899;
   }
 
   .banner-title {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #C85C00;
+    color: #cc4003;
     margin: 0 0 0.25rem 0;
   }
 
   .banner-subtitle {
     font-size: 0.75rem;
-    color: #E06D0E;
+    color: #e54804;
     margin: 0 0 0.75rem 0;
   }
 
   .banner-button {
     font-size: 0.75rem;
-    background: var(--new-brand-color, #f97316);
+    background: var(--new-brand-color, #fe5005);
     color: white;
     padding: 0.375rem 0.75rem;
     border-radius: 0.375rem;
@@ -821,7 +886,7 @@
   }
 
   .banner-button:hover {
-    background: #E06D0E;
+    background: var(--primary-color-light, #e54804);
   }
 
   /* ============================================
