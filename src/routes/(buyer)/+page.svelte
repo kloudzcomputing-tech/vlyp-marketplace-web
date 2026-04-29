@@ -236,6 +236,23 @@
           title: "Kurtis",
           subtitle: "Top Picks",
         },
+
+
+                {
+          id: 5,
+
+          img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSuS7PL9pXbtL6tNxfDoeRAA0fXSyp_U50CMj1pOpNuxGqDGMa8MBkjx8MSiCsTun4sLuOyUjhJEj3spDvAZ75y-8Eqe3Hg8ygczbmeOqdLhVmvG6nMx9L5",
+          title: "Sherwani",
+          subtitle: "Top Picks",
+        },
+        {
+          id: 6,
+
+          img: "https://manyavar.scene7.com/is/image/manyavar/131222-1-272_11-05-2021-13-31-2:650x900?&dpr=on,2",
+          title: "Silk Sarees",
+          subtitle: "Top Picks",
+        },
+
       ],
     },
 
