@@ -154,7 +154,7 @@
     {
       id: 3,
       type: "card",
-      label: "Winter Collections",
+      label: "Trending Now",
       items: [
         {
           id: 1,
@@ -185,13 +185,27 @@
           title: "Sweaters",
           subtitle: "Top Picks",
         },
+                {
+          id: 5,
+          type: "card",
+          img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcR3noO2mxPvitIpe-07fROgkV3dvcrCDrlkqHiizHiNraxK-f5GMO0v5chdSwbvHq7VN6gnRetjjcX6nxTN8PzutfzNvY7tBNPv0VvsrjVDJj9WB9_SH2WqMA",
+          title: "Women's Winter Coats",
+          subtitle: "Top Picks",
+        },
+        {
+          id: 6,
+          type: "card",
+          img: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQskFN4DAUaxHeauPTB6EsJ5cwnL2tqDhJMY0AdZLqcpmFCvzBQokHz4AmOPpO5E1nPc5b2zE42cXSmGKOI-Ni4PLMKwymKi4X5YRoaS5c",
+          title: "Sweaters",
+          subtitle: "Top Picks",
+        },
       ],
     },
 
     {
       id: 4,
       type: "card",
-      label: "Traditional Wear",
+      label: "Deels Of The Week",
       items: [
         {
           id: 1,
