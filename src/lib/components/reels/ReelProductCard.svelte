@@ -124,11 +124,11 @@ shadow-sm"
       </button>
     {/if}
     <button
-      class="w-full px-5 sm:px-6 py-3.5 text-sm font-semibold text-black flex items-center justify-center gap-1
+      class="w-full px-5 sm:px-6 py-3.5 text-sm font-semibold text-white flex items-center justify-center gap-1
         bg-[var(--primary-color-accent)] rounded-md
 border border-[var(--primary-color-accent)]
         transition-all duration-200
-        shadow-lg hover:shadow-xl"
+        shadow-lg hover:shadow-xl "
       onclick={() => {
         if (!isLoggedIn) {
           openLoginModal = true;

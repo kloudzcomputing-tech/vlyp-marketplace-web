@@ -1,10 +1,12 @@
 <script>
   import {
+    ArrowRight,
     ChevronLast,
     ChevronsRight,
     Component,
+    Gift,
     Heart,
-    IndianRupeeIcon,
+    Sparkles,
   } from "@lucide/svelte";
   let { data } = $props();
   let masterCat = data?.masterCat;
@@ -154,7 +156,7 @@
     {
       id: 3,
       type: "card",
-      label: "Winter Collections",
+      label: "Trending Now",
       items: [
         {
           id: 1,
@@ -185,13 +187,27 @@
           title: "Sweaters",
           subtitle: "Top Picks",
         },
+                {
+          id: 5,
+          type: "card",
+          img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcR3noO2mxPvitIpe-07fROgkV3dvcrCDrlkqHiizHiNraxK-f5GMO0v5chdSwbvHq7VN6gnRetjjcX6nxTN8PzutfzNvY7tBNPv0VvsrjVDJj9WB9_SH2WqMA",
+          title: "Women's Winter Coats",
+          subtitle: "Top Picks",
+        },
+        {
+          id: 6,
+          type: "card",
+          img: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQskFN4DAUaxHeauPTB6EsJ5cwnL2tqDhJMY0AdZLqcpmFCvzBQokHz4AmOPpO5E1nPc5b2zE42cXSmGKOI-Ni4PLMKwymKi4X5YRoaS5c",
+          title: "Sweaters",
+          subtitle: "Top Picks",
+        },
       ],
     },
 
     {
       id: 4,
       type: "card",
-      label: "Traditional Wear",
+      label: "Deels Of The Week",
       items: [
         {
           id: 1,
@@ -220,6 +236,23 @@
           title: "Kurtis",
           subtitle: "Top Picks",
         },
+
+
+                {
+          id: 5,
+
+          img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSuS7PL9pXbtL6tNxfDoeRAA0fXSyp_U50CMj1pOpNuxGqDGMa8MBkjx8MSiCsTun4sLuOyUjhJEj3spDvAZ75y-8Eqe3Hg8ygczbmeOqdLhVmvG6nMx9L5",
+          title: "Sherwani",
+          subtitle: "Top Picks",
+        },
+        {
+          id: 6,
+
+          img: "https://manyavar.scene7.com/is/image/manyavar/131222-1-272_11-05-2021-13-31-2:650x900?&dpr=on,2",
+          title: "Silk Sarees",
+          subtitle: "Top Picks",
+        },
+
       ],
     },
 
@@ -649,6 +682,58 @@
         Inspired by modern e-commerce trends. Brand adapted as <strong
           class="font-semibold">Vylp</strong
         >.
+      </div>
+    </div>
+  </section>
+
+  <section class="px-3 pb-10 md:px-4 md:pb-14">
+    <div class="mx-auto w-full max-w-7xl">
+      <div class="rounded-[1.5rem] bg-[var(--primary-color)]  px-5 py-6 text-white  sm:px-8 sm:py-7">
+        <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div class="flex items-center gap-4">
+            <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/18 backdrop-blur-sm">
+              <Gift class="h-7 w-7" />
+            </div>
+
+            <div>
+              <div class="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/85">
+                <Sparkles class="h-3.5 w-3.5" />
+                Refer & Earn
+              </div>
+              <h2 class="text-xl font-bold leading-tight sm:text-3xl">
+                Invite Friends & Get Rewards
+              </h2>
+              <p class="mt-1 max-w-2xl text-sm leading-6 text-white/90 sm:text-base">
+                Get ₹100 for every friend who shops with us. Your rewards are
+                just a share away!
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2 sm:items-end">
+            {#if data?.customer?.referral_code}
+              <button
+                type="button"
+                onclick={copyReferralLink}
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#ff4d8d] shadow-[0_12px_30px_-16px_rgba(0,0,0,0.45)] transition hover:bg-rose-50"
+              >
+                Refer Now
+                <ArrowRight class="h-4 w-4" />
+              </button>
+              <p class="text-xs font-medium text-white/85">
+                Code: {data.customer.referral_code}
+              </p>
+            {:else}
+              <a
+                href="#"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#ff4d8d] shadow-[0_12px_30px_-16px_rgba(0,0,0,0.45)] transition hover:bg-rose-50"
+              >
+                Refer Now
+                <ArrowRight class="h-4 w-4" />
+              </a>
+            {/if}
+          </div>
+        </div>
       </div>
     </div>
   </section>

@@ -13,7 +13,7 @@
   };
 </script>
 
-<div class="bg-white col-span-3 max-h-[660px] rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+<div class="bg-white col-span-3 max-h-[660px] rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 sm:block hidden">
   <!-- Header -->
   <div class="px-4 pt-2 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
     <div class="flex items-center justify-between">

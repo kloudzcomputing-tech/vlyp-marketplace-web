@@ -31,7 +31,7 @@
 </script>
 
 <div
-  class=" h-[calc(100dvh-73px)] sm:h-[calc(100dvh-113px)] md:h-[calc(100dvh-72px)]
+  class=" h-[100dvh] sm:h-[calc(100dvh-113px)] md:h-[calc(100dvh-72px)]
     overflow-y-scroll
     snap-y
     snap-mandatory

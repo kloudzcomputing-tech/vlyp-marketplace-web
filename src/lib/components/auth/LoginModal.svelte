@@ -225,19 +225,6 @@
                   Get OTP
                 {/if}
               </button>
-
-              <div class="login-divider">
-                <span>or</span>
-              </div>
-
-              <button type="button" onclick={closeModal} class="login-back-btn">
-                Continue as Guest
-              </button>
-
-              <div class="login-secure-note">
-                <ShieldCheckIcon size={13} />
-                <span>Your data is encrypted & never shared</span>
-              </div>
             </form>
           {:else if step === 1}
             <!-- Step 1: OTP Verification -->
