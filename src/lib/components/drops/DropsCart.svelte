@@ -22,6 +22,7 @@
   import { onMount } from "svelte";
   import ReelCartCheckout from "../reels/ReelCartCheckout.svelte";
   import { addToCart } from "$lib/stores/cart";
+  import { goto } from "$app/navigation";
   let { reel, updateMatrix, user } = $props();
 
   let products = $state(reel?.products || []);
@@ -329,8 +330,9 @@
         <div
           class="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-4"
         >
-          <!-- Back Button -->
+          <!-- Back Button - goes to home -->
           <button
+            onclick={() => goto('/')}
             class="w-10 h-10 bg-black/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-all"
           >
             <ChevronLeftIcon size={24} strokeWidth={2.5} />
@@ -441,7 +443,7 @@
 
         <!-- Bottom Section: Store Info -->
         <div
-          class="absolute bottom-[140px] left-0 right-0 z-10 px-4"
+          class="absolute bottom-[130px] md:bottom-0 left-0 right-0 z-10 px-4"
         >
           <div class="flex items-center gap-3 mb-2">
             <!-- Avatar with purple ring -->
@@ -452,7 +454,7 @@
                 class="w-full h-full object-cover"
               />
             </div>
-            <div class="flex-1 min-w-0">
+            <div class=" min-w-0">
               <p class="font-semibold text-lg text-white truncate">{reel?.store?.name || "Fashionista_Jane"}</p>
               <p class="text-xs text-gray-400 uppercase tracking-wide">Store Partner</p>
             </div>

@@ -1,6 +1,7 @@
 <script>
   import { page } from '$app/state';
   import LoginModal from '../auth/LoginModal.svelte';
+  import { hideBottomNav } from '$lib/stores/dropsNav.js';
 
   let { customer = null } = $props();
 
@@ -12,10 +13,19 @@
   let isDrops = $derived(path === '/drops');
   let isSearch = $derived(path === '/search');
   let isAccount = $derived(path === '/account');
+
+  // Subscribe to hideBottomNav store
+  let shouldHideNav = $state(false);
+  $effect(() => {
+    const unsubscribe = hideBottomNav.subscribe(value => {
+      shouldHideNav = value;
+    });
+    return unsubscribe;
+  });
 </script>
 
-<!-- Modern floating bottom nav bar -->
-<nav class="mobile-nav-wrapper" aria-label="Mobile navigation">
+<!-- Modern floating bottom nav bar - hide on drops page -->
+<nav class="mobile-nav-wrapper" class:hidden={isDrops || shouldHideNav} aria-label="Mobile navigation">
   <div class="mobile-nav-bar">
 
     <!-- Home -->
@@ -95,6 +105,13 @@
     z-index: 9999;
     padding: 0;
     pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .mobile-nav-wrapper.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
   }
 
   @media (min-width: 640px) {
@@ -142,13 +159,13 @@
     transform: scale(0.90);
   }
 
-  /* Active state */
+  /* Active state - violet theme */
   .nav-item.active {
-    color: #fe5005;
+    color: #7c3aed;
   }
 
   .nav-item.active .nav-label {
-    color: #fe5005;
+    color: #7c3aed;
     font-weight: 700;
   }
 
@@ -162,7 +179,7 @@
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #fe5005;
+    background: #7c3aed;
     animation: dotPop 0.3s ease forwards;
   }
 
@@ -184,13 +201,13 @@
   }
 
   .nav-item.active .nav-icon-wrap {
-    background: rgba(254, 80, 5, 0.12);
+    background: rgba(124, 58, 237, 0.12);
     transform: translateY(-2px);
   }
 
   .nav-item.active .nav-icon-wrap svg {
-    fill: rgba(254, 80, 5, 0.15);
-    stroke: #fe5005;
+    fill: rgba(124, 58, 237, 0.15);
+    stroke: #7c3aed;
   }
 
   /* ──────── Label ──────── */
