@@ -369,7 +369,7 @@
 
             <button
               type="submit"
-              class="flex h-[46px] items-center justify-center bg-[var(--primary-color-light)] px-5 text-white transition hover:bg-[var(--primary-color-hover)]"
+              class="flex h-[46px] items-center justify-center bg-[var(--primary-color)] px-5 text-white transition "
               aria-label="Search"
             >
               <Search size={18} />
