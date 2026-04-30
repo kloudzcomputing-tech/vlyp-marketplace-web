@@ -427,7 +427,7 @@
     </div>
   </div>
 
-  <div class="border-b border-slate-200 bg-white px-3  py-3 md:hidden">
+  <div class="border-b border-slate-200 bg-white px-3  py-3 hidden sm:block md:hidden">
     <div class="mx-auto max-w-7xl">
       <form onsubmit={handleSearch}>
         <div class="flex items-center overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-sm">
