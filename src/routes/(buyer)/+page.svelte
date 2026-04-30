@@ -688,7 +688,7 @@
 
   <section class="px-3 pb-10 md:px-4 md:pb-14">
     <div class="mx-auto w-full max-w-7xl">
-      <div class="rounded-[1.5rem] bg-gradient-to-r from-[#ff7a18] via-[#ff6b6b] to-[#ff4d8d] px-5 py-6 text-white shadow-[0_18px_45px_-24px_rgba(255,77,141,0.72)] sm:px-8 sm:py-7">
+      <div class="rounded-[1.5rem] bg-[var(--primary-color)]  px-5 py-6 text-white  sm:px-8 sm:py-7">
         <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div class="flex items-center gap-4">
             <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/18 backdrop-blur-sm">
@@ -725,7 +725,7 @@
               </p>
             {:else}
               <a
-                href="/login"
+                href="#"
                 class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#ff4d8d] shadow-[0_12px_30px_-16px_rgba(0,0,0,0.45)] transition hover:bg-rose-50"
               >
                 Refer Now
