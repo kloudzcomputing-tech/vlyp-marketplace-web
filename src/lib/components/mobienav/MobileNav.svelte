@@ -161,11 +161,11 @@
 
   /* Active state - violet theme */
   .nav-item.active {
-    color: #7c3aed;
+    color: #FF3F6C;
   }
 
   .nav-item.active .nav-label {
-    color: #7c3aed;
+    color: #FF3F6C;
     font-weight: 700;
   }
 
@@ -179,7 +179,7 @@
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #7c3aed;
+    background: #FF3F6C;
     animation: dotPop 0.3s ease forwards;
   }
 
@@ -201,13 +201,13 @@
   }
 
   .nav-item.active .nav-icon-wrap {
-    background: rgba(124, 58, 237, 0.12);
+    background: rgba(255, 61, 106, 0.12);
     transform: translateY(-2px);
   }
 
   .nav-item.active .nav-icon-wrap svg {
-    fill: rgba(124, 58, 237, 0.15);
-    stroke: #7c3aed;
+    fill: rgba(255, 61, 106, 0.15);
+    stroke: #ff3d6a;
   }
 
   /* ──────── Label ──────── */
