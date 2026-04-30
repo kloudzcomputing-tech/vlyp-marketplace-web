@@ -1,6 +1,7 @@
 <script>
   import { inView } from "$lib/helpers/inView";
   import {
+    Bookmark,
     ChevronLeftIcon,
     ChevronRightIcon,
     ExternalLink,
@@ -11,6 +12,7 @@
     PlayIcon,
     Share2,
     ShoppingBag,
+    Star,
     Volume2,
     VolumeX,
     X,
@@ -19,6 +21,7 @@
   import ReelComments from "../reels/ReelComments.svelte";
   import { onMount } from "svelte";
   import ReelCartCheckout from "../reels/ReelCartCheckout.svelte";
+  import { addToCart } from "$lib/stores/cart";
   let { reel, updateMatrix, user } = $props();
 
   let products = $state(reel?.products || []);
@@ -55,6 +58,7 @@
   let isLiked = $state(false);
   let isCommented = $state(false);
   let isShared = $state(false);
+  let isSaved = $state(false);
   let isManuallyPaused = $state(false);
   let isMuted = $state(true);
   let showCenterControl = $state(false);
@@ -266,6 +270,10 @@
     isShared = true;
   }
 
+  function handleSave() {
+    isSaved = !isSaved;
+  }
+
   onMount(() => {
     isLiked = reel?.is_liked ?? false;
     likeCount = reel.reel_stats.likes;
@@ -317,21 +325,27 @@
           class="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/70"
         ></div>
 
+        <!-- Top Bar -->
         <div
-          class="absolute top-0 left-0 right-0 z-50 flex items-center justify-end p-4"
+          class="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-4"
         >
-          <div class="flex items-center gap-2">
-            <button
-              onclick={toggleMute}
-              class="absolute top-4 right-4 w-10 h-10 bg-black/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-all z-20"
-            >
-              {#if isMuted}
-                <VolumeX size={20} strokeWidth={2.5} />
-              {:else}
-                <Volume2 size={20} strokeWidth={2.5} />
-              {/if}
-            </button>
-          </div>
+          <!-- Back Button -->
+          <button
+            class="w-10 h-10 bg-black/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-all"
+          >
+            <ChevronLeftIcon size={24} strokeWidth={2.5} />
+          </button>
+          <!-- Mute Button -->
+          <button
+            onclick={toggleMute}
+            class="w-10 h-10 bg-black/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-all"
+          >
+            {#if isMuted}
+              <VolumeX size={20} strokeWidth={2.5} />
+            {:else}
+              <Volume2 size={20} strokeWidth={2.5} />
+            {/if}
+          </button>
         </div>
 
         <button
@@ -356,72 +370,162 @@
           {/if}
         </button>
 
-        <div class="absolute right-3 bottom-24 z-[9] flex flex-col gap-6">
+        <!-- Right Side Actions -->
+        <div class="absolute right-3 top-1/2 -translate-y-1/2 z-[9] flex flex-col gap-5">
+          <!-- Like -->
           <div class="text-center">
             <button
               onclick={handleLike}
-              class="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center transition-all"
+              class="w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center transition-all hover:scale-110"
             >
               <Heart
+                size={24}
                 class={isLiked ? "text-red-500 fill-red-500" : "text-white"}
               />
             </button>
             <span
-              class="text-sm font-semibold text-white transition duration-300"
+              class="text-sm font-semibold text-white mt-1 block"
             >
-              {likeCount}
+              {likeCount > 999 ? (likeCount/1000).toFixed(1) + 'K' : likeCount}
             </span>
           </div>
 
+          <!-- Comment -->
           <div class="text-center">
             <button
               onclick={handleComment}
-              class="  w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all like-btn text-white"
+              class="w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center hover:scale-110 transition-all"
             >
-              <MessageCircle fill="white" stroke="white" />
+              <MessageCircle size={24} class="text-white" />
             </button>
             <span
-              class="text-sm font-semibold text-white transition duration-300"
+              class="text-sm font-semibold text-white mt-1 block"
             >
               {commentCount}
             </span>
           </div>
 
+          <!-- Share -->
           <div class="text-center">
             <button
               onclick={handleShare}
-              class="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all like-btn text-white"
+              class="w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center hover:scale-110 transition-all"
             >
-              <Share2 fill="white" stroke="white" />
+              <Share2 size={24} class="text-white" />
             </button>
-
             <span
-              class="text-sm font-semibold text-white transition duration-300"
+              class="text-sm font-semibold text-white mt-1 block"
             >
               Share
             </span>
           </div>
+
+          <!-- Save -->
+          <div class="text-center">
+            <button
+              onclick={handleSave}
+              class="w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center hover:scale-110 transition-all"
+            >
+              <Bookmark
+                size={24}
+                class={isSaved ? "text-white fill-white" : "text-white"}
+              />
+            </button>
+            <span
+              class="text-sm font-semibold text-white mt-1 block"
+            >
+              Save
+            </span>
+          </div>
         </div>
 
+        <!-- Bottom Section: Store Info -->
         <div
-          class="flex items-center gap-3 mb-3 absolute bottom-0 left-0 z-2 p-[10px]"
+          class="absolute bottom-[140px] left-0 right-0 z-10 px-4"
         >
-          <span class="font-semibold text-lg text-white">@streetwear_daily</span
-          >
-
-          <button
-            class="px-2 py-0.5 bg-[#0a66c2] text-white rounded-full text-xs font-bold"
-          >
-            Follow
-          </button>
+          <div class="flex items-center gap-3 mb-2">
+            <!-- Avatar with purple ring -->
+            <div class="w-12 h-12 rounded-full border-2 border-[var(--primary-color)] overflow-hidden flex-shrink-0">
+              <img
+                src={reel?.store?.logo_url || "https://placehold.co/48x48/7c3aed/white?text=S"}
+                alt={reel?.store?.name || "Store"}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="font-semibold text-lg text-white truncate">{reel?.store?.name || "Fashionista_Jane"}</p>
+              <p class="text-xs text-gray-400 uppercase tracking-wide">Store Partner</p>
+            </div>
+            <button
+              class="px-5 py-2 bg-[var(--primary-color)] text-white rounded-full text-sm font-bold hover:bg-[var(--primary-color-hover)] transition-all"
+            >
+              FOLLOW
+            </button>
+          </div>
+          <!-- Caption -->
+          <p class="text-white text-sm line-clamp-2">{reel?.caption || "Loving this new cotton tee! Super comfy and stylish. #fashion #vlyp"}</p>
         </div>
 
-        <button
-          onclick={() => (showCartPanel = !showCartPanel)}
-          class="absolute bottom-[23px] right-[14px] bg-[var(--primary-color)] text-white p-[7px] rounded-full hover:scale-110 transition-transform z-40 md:hidden"
-        >
-          <ShoppingBag size={24} strokeWidth={2.5} />
-        </button>
+        <!-- Mobile Product Card Overlay -->
+        {#if products.length > 0}
+        {@const product = products[currentIndex]}
+        <div class="absolute bottom-4 left-4 right-4 z-20 md:hidden">
+          <div class="bg-black/80 backdrop-blur-md rounded-2xl p-3 flex items-center gap-3 border border-white/10">
+            <!-- Product Image -->
+            <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 bg-gray-800">
+              <img
+                src={product?.image_url}
+                alt={product?.title}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <!-- Product Info -->
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 mb-0.5">
+                <span class="px-2 py-0.5 bg-yellow-500 text-black text-xs font-bold rounded flex items-center gap-0.5">
+                  <Star size={10} class="fill-black" /> {product?.rating || "4.2"}
+                </span>
+                <span class="text-xs text-gray-400 uppercase">{reel?.category || "Fashion"}</span>
+              </div>
+              <p class="text-white font-semibold text-sm truncate">{product?.title}</p>
+              <div class="flex items-center gap-2">
+                <span class="text-[var(--primary-color)] font-bold">₹{product?.selling_price}</span>
+                <span class="text-gray-500 text-xs line-through">₹{product?.compare_at_price}</span>
+              </div>
+            </div>
+            <!-- Actions -->
+            <div class="flex flex-col gap-2">
+              <button
+                class="px-4 py-2 bg-lime-500 text-black text-xs font-bold rounded-full hover:bg-lime-400 transition-all"
+              >
+                BUY NOW
+              </button>
+              <button
+                onclick={() => {
+                  const payload = {
+                    id: product?.id,
+                    variant_id: product?.variant_id,
+                    vendor_id: product?.vendor_id,
+                    category_id: product?.category_id,
+                    title: product?.title,
+                    slug: product?.slug,
+                    sku: product?.sku,
+                    coupons: [],
+                    selling_price: product?.selling_price,
+                    compare_at_price: product?.compare_at_price,
+                    weight_grams: product?.weight_grams,
+                    image_url: product?.image_url,
+                  };
+                  addToCart(payload);
+                }}
+                class="px-4 py-2 bg-gray-700 text-white text-xs font-bold rounded-full hover:bg-gray-600 transition-all"
+              >
+                ADD
+              </button>
+            </div>
+          </div>
+        </div>
+        {/if}
       </div>
 
       <div
