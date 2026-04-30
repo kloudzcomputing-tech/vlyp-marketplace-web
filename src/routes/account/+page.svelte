@@ -1,6 +1,4 @@
 <script>
-  import MobileNav from '$lib/components/mobienav/MobileNav.svelte';
-
     let { data } = $props();
     // svelte-ignore state_referenced_locally
         let user = data?.customer;
@@ -95,7 +93,7 @@
 
 </script>
 
-<div class="p-4 pb-24 sm:p-6 sm:pb-6">
+<div class="sm:p-6 sm:pb-6">
     <!-- Header -->
     <div class="w-full max-w-3xl space-y-4 sm:space-y-6">
         <div>
@@ -355,5 +353,3 @@
         </div>
     </div>
 </div>
-
-<MobileNav customer={user} />
