@@ -286,7 +286,7 @@
     </div>
   {/if}
 
-  <div class="bg-[var(--primary-color)]  py-3">
+  <div class=" py-3">
     <div
       class="mx-auto flex max-w-7xl items-center justify-between gap-3 md:gap-6 px-3  md:px-4"
     >
@@ -294,10 +294,10 @@
         <a
           href="/"
           data-sveltekit-reload="true"
-          class="text-2xl font-bold tracking-tight text-white transition-colors"
+          class="text-2xl font-bold tracking-tight text-[var(--primary-color)] transition-colors"
         >
           <span class="not-italic">
-            Vl<span class="text-white italic">yp</span>
+            Vl<span class="text-[var(--primary-color)] italic">yp</span>
           </span>
         </a>
 
@@ -311,11 +311,11 @@
 
             openLoginModal = true;
           }}
-          class="flex min-w-0 max-w-[200px] flex-1 items-center gap-2 rounded-xl   text-left text-white backdrop-blur-sm md:hidden"
+          class="flex min-w-0 max-w-[200px] flex-1 items-center gap-2 rounded-xl   text-left  text-[var(--primary-color)] backdrop-blur-sm md:hidden"
           aria-label="Delivery address"
         >
           <span
-            class="flex  flex-shrink-0 items-center justify-center rounded-full text-white"
+            class="flex  flex-shrink-0 items-center justify-center rounded-full  text-[var(--primary-color)]"
           >
             <MapPinIcon size={16} />
           </span>
@@ -324,7 +324,7 @@
               <span class="truncate">{mobileAddressTitle}</span>
               <ChevronDownIcon size={14} class="flex-shrink-0" />
             </span>
-            <span class="mt-1 block truncate text-[10px] text-white/80">
+            <span class="mt-1 block truncate text-[10px] text-[var(--primary-color)]/80">
               {mobileAddressLine}
             </span>
           </span>
@@ -382,7 +382,7 @@
         <a
           href="https://seller.vlyp.store"
           target="_blank"
-          class="text-white hidden items-center rounded-lg border border-white/60 px-4 py-2 text-sm font-medium transition hover:bg-white hover:text-[var(--primary-color)] lg:flex"
+          class="text-[var(--primary-color)] hidden items-center rounded-lg border border-[var(--primary-color)] px-4 py-2 text-sm font-medium transition hover:bg-[var(--primary-color)] hover:text-white lg:flex"
         >
           Become a Seller
         </a>
@@ -390,10 +390,10 @@
         <a
           href="/cart"
           data-sveltekit-reload="true"
-          class="relative flex items-center gap-2 text-white transition-colors"
+          class="relative flex items-center gap-2 text-[var(--primary-color)] transition-colors"
         >
           <div class="relative">
-            <ShoppingCartIcon size={24} class="text-white" />
+            <ShoppingCartIcon size={24} class="text-[var(--primary-color)]" />
             {#if $cart?.length > 0}
               <span
                 class="absolute -top-2 -right-2 flex items-center justify-center w-5 h-5 text-xs font-bold text-[var(--primary-color)] bg-white rounded-full"
@@ -411,15 +411,15 @@
             data-sveltekit-reload="true"
             class="sm:flex items-center gap-2 transition-colors      hidden"
           >
-            <UserIcon size={24} class="text-white" />
+            <UserIcon size={24} class="text-[var(--primary-color)]" />
             <span class="hidden lg:inline text-sm font-medium text-white">Account</span>
           </a>
         {:else}
           <button
             onclick={() => (openLoginModal = true)}
-            class="flex items-center gap-2 text-white transition-colors"
+            class="flex items-center gap-2 text-[var(--primary-color)] transition-colors"
           >
-            <UserIcon size={24} class="text-white" />
+            <UserIcon size={24} class="text-[var(--primary-color)]" />
             <span class="hidden lg:inline text-sm font-medium">Login</span>
           </button>
         {/if}
