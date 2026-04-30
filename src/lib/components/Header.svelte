@@ -311,11 +311,11 @@
 
             openLoginModal = true;
           }}
-          class="flex min-w-0 max-w-[200px] flex-1 items-center gap-2 rounded-xl   text-left text-white backdrop-blur-sm md:hidden"
+          class="flex min-w-0 max-w-[200px] flex-1 items-center gap-2 rounded-xl   text-left  text-[var(--primary-color)] backdrop-blur-sm md:hidden"
           aria-label="Delivery address"
         >
           <span
-            class="flex  flex-shrink-0 items-center justify-center rounded-full text-white"
+            class="flex  flex-shrink-0 items-center justify-center rounded-full  text-[var(--primary-color)]"
           >
             <MapPinIcon size={16} />
           </span>
@@ -324,7 +324,7 @@
               <span class="truncate">{mobileAddressTitle}</span>
               <ChevronDownIcon size={14} class="flex-shrink-0" />
             </span>
-            <span class="mt-1 block truncate text-[10px] text-white/80">
+            <span class="mt-1 block truncate text-[10px] text-[var(--primary-color)]/80">
               {mobileAddressLine}
             </span>
           </span>
