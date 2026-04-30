@@ -2,6 +2,7 @@
     import SidePanel from '$lib/components/account/SidePanel.svelte';
   import Footer from '$lib/components/Footer.svelte';
     import Header from '$lib/components/Header.svelte';
+    import MobileNav from '$lib/components/mobienav/MobileNav.svelte';
     import { page } from '$app/state';
     import '../../app.css';
     
@@ -70,7 +71,7 @@
     };
 </script>
 
-<div class="min-h-screen bg-gray-50">
+<div class="min-h-screen bg-gray-50 pb-24 lg:pb-0">
     <Header  customer={customer} />
     
     <!-- Mobile Tab Menu (below lg) -->
@@ -113,12 +114,12 @@
 
         <!-- Main Content -->
         <main class="flex-1 w-full min-w-0">
-            <div class="bg-white rounded-lg border border-gray-200 sm:p-6 lg:p-8">
+            <div class="bg-white rounded-lg sm:border sm:border-gray-200 sm:p-6 lg:p-8">
                 {@render children?.()}
             </div>
         </main>
     </div>
-
+    <MobileNav {customer} />
 </div>
 
 <style>

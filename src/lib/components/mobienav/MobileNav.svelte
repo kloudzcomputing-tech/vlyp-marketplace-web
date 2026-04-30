@@ -12,7 +12,7 @@
   let isHome = $derived(path === '/');
   let isDrops = $derived(path === '/drops');
   let isSearch = $derived(path === '/search');
-  let isAccount = $derived(path === '/account');
+  let isAccount = $derived(path === '/account' || path.startsWith('/account/'));
 
   // Subscribe to hideBottomNav store
   let shouldHideNav = $state(false);
