@@ -686,7 +686,7 @@
     </div>
   </section>
 
-  <section class="px-3 pb-10 md:px-4 md:pb-14">
+  <section class="px-3 py-10 md:px-4 md:py-14">
     <div class="mx-auto w-full max-w-7xl">
       <div class="rounded-[1.5rem] bg-[var(--primary-color)]  px-5 py-6 text-white  sm:px-8 sm:py-7">
         <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
