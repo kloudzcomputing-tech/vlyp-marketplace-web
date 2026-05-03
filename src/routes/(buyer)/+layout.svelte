@@ -28,7 +28,7 @@
 <div class="min-h-screen flex flex-col bg-[#f4f6f3] text-slate-900">
     <Header isLoggedIn={data?.isLoggedIn} customer={customer} />
     
-    <main class="flex-1 w-full pb-20 sm:pb-0">
+    <main class="flex-1 w-full sm:pb-20 pb-0">
         {@render children?.()}
     </main>
     
