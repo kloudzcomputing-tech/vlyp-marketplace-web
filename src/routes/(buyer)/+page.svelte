@@ -470,8 +470,8 @@
       {/each}
     </div>
   </div>
-  <section class="mt-2 bg-white px-3 py-10 text-gray-900 antialiased md:px-4">
-    <div class="mx-auto w-full max-w-7xl">
+  <section class="mt-2 bg-white py-10 text-gray-900 antialiased md:px-4">
+    <div class="mx-auto w-full max-w-7xl px-3">
       <div
         class="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4"
       >
@@ -686,52 +686,87 @@
     </div>
   </section>
 
-  <section class="px-3 pb-10 md:px-4 md:pb-14">
-    <div class="mx-auto w-full max-w-7xl">
-      <div class="rounded-[1.5rem] bg-[var(--primary-color)]  px-5 py-6 text-white  sm:px-8 sm:py-7">
-        <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-          <div class="flex items-center gap-4">
-            <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/18 backdrop-blur-sm">
-              <Gift class="h-7 w-7" />
-            </div>
+  <section class="px-3 py-10 md:px-4 md:py-14">
+    <div class="w-full mx-auto flex max-w-7xl ">
+      <div class="relative overflow-hidden rounded-[2rem] bg-slate-900 px-6 py-12 shadow-2xl sm:px-12 md:px-16 lg:py-16">
+        <!-- Decorative Background Elements -->
+        <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[var(--primary-color)] opacity-20 blur-[80px]"></div>
+        <div class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[var(--secondary-color)] opacity-20 blur-[80px]"></div>
+        <div class="pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
 
-            <div>
-              <div class="mb-2 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/85">
-                <Sparkles class="h-3.5 w-3.5" />
-                Refer & Earn
-              </div>
-              <h2 class="text-xl font-bold leading-tight sm:text-3xl">
-                Invite Friends & Get Rewards
-              </h2>
-              <p class="mt-1 max-w-2xl text-sm leading-6 text-white/90 sm:text-base">
-                Get ₹100 for every friend who shops with us. Your rewards are
-                just a share away!
-              </p>
+        <div class="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+          <!-- Left Content Section -->
+          <div class="flex max-w-2xl flex-col items-start gap-5">
+            <div class="inline-flex items-center gap-2 rounded-full border border-[var(--primary-color)]/30 bg-[var(--primary-color)]/10 px-4 py-1.5 backdrop-blur-sm">
+              <Sparkles class="h-4 w-4 text-[var(--primary-color)]" />
+              <span class="text-xs font-bold uppercase tracking-widest text-[var(--primary-color)]">Refer & Earn Program</span>
+            </div>
+            
+            <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-5xl">
+              Invite Friends, <br class="hidden sm:block mt-2" />
+              <span class="text-[var(--primary-color)]">Get Rewarded.</span>
+            </h2>
+            
+            <p class="text-base leading-relaxed text-slate-300 sm:text-lg">
+              Share the love! Give your friends the best shopping experience and earn <strong class="font-semibold text-white">₹100</strong> for every successful referral.
+            </p>
+            
+            <div class="mt-2 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+               <div class="flex -space-x-3">
+                  <img class="h-10 w-10 rounded-full border-2 border-slate-900 object-cover" src="https://i.pravatar.cc/100?img=1" alt="User avatar" />
+                  <img class="h-10 w-10 rounded-full border-2 border-slate-900 object-cover" src="https://i.pravatar.cc/100?img=2" alt="User avatar" />
+                  <img class="h-10 w-10 rounded-full border-2 border-slate-900 object-cover" src="https://i.pravatar.cc/100?img=3" alt="User avatar" />
+                  <img class="h-10 w-10 rounded-full border-2 border-slate-900 object-cover" src="https://i.pravatar.cc/100?img=4" alt="User avatar" />
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-slate-900 bg-slate-800 text-xs font-medium text-white">+2k</div>
+                </div>
+                <div class="flex flex-col">
+                  <div class="flex text-[var(--primary-color)]">
+                    <!-- Stars -->
+                    {#each Array(5) as _}
+                      <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    {/each}
+                  </div>
+                  <span class="text-sm font-medium text-slate-400 mt-1">Users earning rewards right now</span>
+                </div>
             </div>
           </div>
 
-          <div class="flex flex-col gap-2 sm:items-end">
-            {#if data?.customer?.referral_code}
-              <button
-                type="button"
-                onclick={copyReferralLink}
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#ff4d8d] shadow-[0_12px_30px_-16px_rgba(0,0,0,0.45)] transition hover:bg-rose-50"
-              >
-                Refer Now
-                <ArrowRight class="h-4 w-4" />
-              </button>
-              <p class="text-xs font-medium text-white/85">
-                Code: {data.customer.referral_code}
-              </p>
-            {:else}
-              <a
-                href="#"
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#ff4d8d] shadow-[0_12px_30px_-16px_rgba(0,0,0,0.45)] transition hover:bg-rose-50"
-              >
-                Refer Now
-                <ArrowRight class="h-4 w-4" />
-              </a>
-            {/if}
+          <!-- Right Content Section (Card) -->
+          <div class="flex w-full flex-col sm:w-auto lg:min-w-[340px]">
+            <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+              <div class="mb-6 flex justify-center">
+                <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr from-[var(--primary-color)] to-yellow-200 shadow-lg shadow-[var(--primary-color)]/20">
+                  <div class="absolute inset-1 rounded-full border border-white/40"></div>
+                  <Gift class="h-10 w-10 text-slate-900" />
+                </div>
+              </div>
+              
+              {#if data?.customer?.referral_code}
+                <div class="mb-6 rounded-xl bg-black/40 p-4 text-center border border-white/5">
+                  <p class="mb-1 text-xs uppercase tracking-wider text-slate-400">Your Referral Code</p>
+                  <p class="text-2xl font-bold tracking-widest text-white">{data.customer.referral_code}</p>
+                </div>
+                <button
+                  type="button"
+                  onclick={copyReferralLink}
+                  class="group flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary-color)] px-6 py-4 text-sm font-bold text-slate-900 transition-all hover:scale-[1.02] hover:bg-yellow-400 hover:shadow-lg hover:shadow-[var(--primary-color)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-slate-900"
+                >
+                  Copy Link & Share
+                  <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </button>
+              {:else}
+                <div class="mb-6 text-center">
+                  <p class="text-sm text-slate-300">Login to get your unique referral link and start earning today.</p>
+                </div>
+                <a
+                  href="/login"
+                  class="group flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary-color)] px-6 py-4 text-sm font-bold text-slate-900 transition-all hover:scale-[1.02] hover:bg-yellow-400 hover:shadow-lg hover:shadow-[var(--primary-color)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-slate-900"
+                >
+                  Start Referring Now
+                  <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              {/if}
+            </div>
           </div>
         </div>
       </div>

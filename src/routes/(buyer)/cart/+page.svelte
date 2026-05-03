@@ -162,7 +162,7 @@
                 <div class="hidden md:block">
                     <button
                         onclick={handlePlaceOrder}
-                        class="w-full cursor-pointer bg-[var(--primary-color-accent)] text-black font-semibold text-sm px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md active:scale-[0.98] transition"
+                        class="w-full cursor-pointer bg-[var(--primary-color)] text-white font-semibold text-sm px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md active:scale-[0.98] transition"
                     >
                         Checkout
                     </button>
@@ -187,7 +187,7 @@
             <p class="text-lg font-bold text-gray-900">₹{total}</p>
         </div>
         <button
-            class="flex-1 flex items-center justify-center bg-[var(--primary-color-accent)] text-black font-semibold text-sm px-4 py-2.5 rounded-mdw-full px-5 sm:px-6 py-3.5 text-sm font-medium
+            class="flex-1 flex items-center justify-center bg-[var(--primary-color)] text-white font-semibold text-sm px-4 py-2.5 rounded-mdw-full px-5 sm:px-6 py-3.5 text-sm font-medium
    rounded-md text-black
    transition-all duration-200
    shadow-sm

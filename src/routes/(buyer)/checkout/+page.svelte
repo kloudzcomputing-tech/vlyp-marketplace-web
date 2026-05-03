@@ -520,7 +520,7 @@ padding-bottom: max(70px, env(safe-area-inset-bottom));
                 <!-- Proceed Button - Desktop -->
                 <button
                     onclick={handleProceedToPay}
-                    class="w-full cursor-pointer bg-[var(--primary-color-accent)] text-black font-semibold text-sm px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md active:scale-[0.98] transition"
+                    class="w-full cursor-pointer bg-[var(--primary-color)] text-white font-semibold text-sm px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md active:scale-[0.98] transition"
                 >
                     Proceed to Pay
                 </button>
@@ -546,7 +546,7 @@ padding-bottom: max(70px, env(safe-area-inset-bottom));
         <!-- Proceed Button - Desktop -->
         <button
             onclick={handleProceedToPay}
-            class="w-full cursor-pointer bg-[var(--primary-color-accent)] text-black font-semibold text-sm px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md active:scale-[0.98] transition"
+            class="w-full cursor-pointer bg-[var(--primary-color)] text-white font-semibold text-sm px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md active:scale-[0.98] transition"
         >
             Proceed to Pay
         </button>

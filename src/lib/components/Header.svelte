@@ -333,7 +333,7 @@
 
       <div class="hidden max-w-2xl flex-1 md:block">
         <form onsubmit={handleSearch} class="w-full">
-          <div class="flex items-center overflow-hidden rounded-lg border border-white/10 bg-white shadow-sm">
+          <div class="flex items-center overflow-hidden rounded-lg  bg-white shadow-sm border border-[var(--primary-color)]">
             <div class="relative">
               <select
                 class="cursor-pointer appearance-none border-r border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-700 focus:outline-none"
@@ -671,8 +671,8 @@
   .category-item:hover,
   .category-item.active {
     background: #fff2ec;
-    border-left-color: var(--new-brand-color);
-    color: var(--new-brand-color);
+    border-left-color: #ff3f6c;
+    color: #ff3f6c;
   }
 
   .category-content {
