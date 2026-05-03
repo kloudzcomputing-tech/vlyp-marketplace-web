@@ -286,7 +286,7 @@
     </div>
   {/if}
 
-  <div class=" py-3">
+  <div class=" py-4">
     <div
       class="mx-auto flex max-w-7xl items-center justify-between gap-3 md:gap-6 px-3  md:px-4"
     >
