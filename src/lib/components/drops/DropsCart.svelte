@@ -459,7 +459,7 @@
               <p class="text-xs text-gray-400 uppercase tracking-wide">Store Partner</p>
             </div>
             <button
-              class="px-5 py-2 bg-[var(--primary-color)] text-white rounded-full text-sm font-bold hover:bg-[var(--primary-color-hover)] transition-all"
+              class="text-white rounded-full bg-[var(--primary-color-hover)] transition-all px-3 py-[5px] text-[12px] font-bold"
             >
               FOLLOW
             </button>
