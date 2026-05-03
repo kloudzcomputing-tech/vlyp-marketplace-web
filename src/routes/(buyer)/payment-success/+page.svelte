@@ -38,7 +38,7 @@
         >
             <a
                 href="/account/orders"
-                class="bg-[var(--primary-color-accent)] text-black px-4 py-2 rounded-md"
+                class="bg-[var(--primary-color)] text-white px-4 py-2 rounded-md"
             >
                 View Order
             </a>

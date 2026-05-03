@@ -249,10 +249,10 @@
                         </div>
                         <button
                             onclick={togglePanel}
-                            class=" shop-btn bg-[var(--primary-color-accent)] backdrop-blur-md hover:bg-white/30 rounded-full min-w-12 min-h-12 sm:w-14 sm:h-14 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 animate-slide-in-right border border-white/20"
+                            class=" shop-btn bg-[var(--primary-color)] backdrop-blur-md hover:bg-white/30 rounded-full min-w-12 min-h-12 sm:w-14 sm:h-14 flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 animate-slide-in-right border border-white/20"
                             aria-label="Open shop"
                         >
-                            <ShoppingBagIcon color="black" size={22} />
+                            <ShoppingBagIcon color="white" size={22} />
                         </button>
                     </div>
                 </div>

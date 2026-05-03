@@ -1,7 +1,6 @@
 <script>
     import Header from "$lib/components/Header.svelte";
     import "../../../app.css";
-    import "./style.css";
     import { onMount } from "svelte";
     import {
         ShoppingBagIcon,

@@ -125,8 +125,8 @@ shadow-sm"
     {/if}
     <button
       class="w-full px-5 sm:px-6 py-3.5 text-sm font-semibold text-white flex items-center justify-center gap-1
-        bg-[var(--primary-color-accent)] rounded-md
-border border-[var(--primary-color-accent)]
+        bg-[var(--primary-color)] rounded-md
+border border-[var(--primary-color)]
         transition-all duration-200
         shadow-lg hover:shadow-xl "
       onclick={() => {
