@@ -447,7 +447,7 @@
         >
           <div class="flex items-center gap-3 mb-2">
             <!-- Avatar with purple ring -->
-            <div class="w-12 h-12 rounded-full border-2 border-[var(--primary-color)] overflow-hidden flex-shrink-0">
+            <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-[var(--primary-color)] overflow-hidden flex-shrink-0">
               <img
                 src={reel?.store?.logo_url || "https://placehold.co/48x48/7c3aed/white?text=S"}
                 alt={reel?.store?.name || "Store"}
@@ -465,7 +465,7 @@
             </button>
           </div>
           <!-- Caption -->
-          <p class="text-white text-sm line-clamp-2">{reel?.caption || "Loving this new cotton tee! Super comfy and stylish. #fashion #vlyp"}</p>
+          <p class="text-white text-sm line-clamp-2 sm:max-w-auto max-w-[230px]">{reel?.caption || "Loving this new cotton tee! Super comfy and stylish. #fashion #vlyp"}</p>
         </div>
 
         <!-- Mobile Product Card Overlay -->
@@ -498,7 +498,7 @@
             <!-- Actions -->
             <div class="flex flex-col gap-2">
               <button
-                class="px-4 py-2 bg-lime-500 text-black text-xs font-bold rounded-full hover:bg-lime-400 transition-all"
+                class="px-4 py-2 bg-[var(--primary-color)]  text-white text-xs font-bold rounded-full hover:bg-lime-400 transition-all"
               >
                 BUY NOW
               </button>

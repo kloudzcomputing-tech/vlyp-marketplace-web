@@ -470,8 +470,8 @@
       {/each}
     </div>
   </div>
-  <section class="mt-2 bg-white px-3 py-10 text-gray-900 antialiased md:px-4">
-    <div class="mx-auto w-full max-w-7xl">
+  <section class="mt-2 bg-white py-10 text-gray-900 antialiased md:px-4">
+    <div class="mx-auto w-full max-w-7xl px-3">
       <div
         class="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4"
       >
