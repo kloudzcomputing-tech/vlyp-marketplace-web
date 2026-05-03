@@ -81,9 +81,9 @@
                 {@const isActive = currentPath === tab.path}
                 <a
                     href={tab.path}
-                    class="flex flex-col items-center justify-center min-w-[72px] px-3 py-3 space-y-1 transition-all {isActive ? 'text-gray-900 border-b-2 border-gray-900 bg-gray-50/50' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50/30'}"
+                    class="flex flex-col items-center justify-center min-w-[72px] px-3 py-3 space-y-1 transition-all {isActive ? 'text-[var(--primary-color)] border-b-2 border-[var(--primary-color)] bg-[var(--primary-color)]/10' : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50/30'}"
                 >
-                    <div class="{isActive ? 'text-gray-900' : 'text-gray-500'}">
+                    <div class="{isActive ? 'text-[var(--primary-color)]' : 'text-gray-500'}">
                         {@html tab.icon}
                     </div>
                     <span class="text-[11px] font-medium whitespace-nowrap">{tab.label}</span>
