@@ -687,7 +687,7 @@
   </section>
 
   <section class="px-3 py-10 md:px-4 md:py-14">
-    <div class="mx-auto w-full max-w-7xl">
+    <div class="w-full mx-auto flex max-w-7xl ">
       <div class="relative overflow-hidden rounded-[2rem] bg-slate-900 px-6 py-12 shadow-2xl sm:px-12 md:px-16 lg:py-16">
         <!-- Decorative Background Elements -->
         <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[var(--primary-color)] opacity-20 blur-[80px]"></div>

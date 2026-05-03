@@ -671,8 +671,8 @@
   .category-item:hover,
   .category-item.active {
     background: #fff2ec;
-    border-left-color: var(--new-brand-color);
-    color: var(--new-brand-color);
+    border-left-color: #ff3f6c;
+    color: #ff3f6c;
   }
 
   .category-content {
