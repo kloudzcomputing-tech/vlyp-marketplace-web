@@ -111,13 +111,13 @@
 />
 
 <div class="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-    <div class="flex flex-col lg:flex-row">
+    <div class="flex flex-col lg:flex-row mx-auto px-3 md:px-4  max-w-7xl items">
 
         <!-- Filter Sidebar -->
         <aside
             class="hidden sm:block sm:sticky top-0 left-0 z-auto w-72 h-screen bg-white border-r border-gray-200 overflow-y-auto shadow-none"
         >
-            <div class="p-6 lg:p-8 space-y-6 lg:space-y-8 h-full overflow-y-auto custom-scrollbar">
+            <div class="p-6 lg:p-8 space-y-6 lg:space-y-8 h-full overflow-y-auto custom-scrollbar"  style="padding-left: 0px;">
 
                 <!-- Clear Filters Button -->
                 {#if activeFilterCount > 0}

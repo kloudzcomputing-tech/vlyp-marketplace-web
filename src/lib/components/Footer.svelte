@@ -533,17 +533,7 @@
     }
   }
 
-  .contact-card {
-    background: var(--ft-surface);
-    border: 1px solid var(--ft-border);
-    border-radius: var(--ft-radius);
-    padding: 20px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .contact-card:hover {
-    border-color: rgba(255, 63, 108, 0.15);
-    box-shadow: 0 4px 24px rgba(255, 63, 108, 0.06);
-  }
+
 
   .contact-card-header {
     display: flex;
