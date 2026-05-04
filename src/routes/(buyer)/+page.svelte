@@ -688,7 +688,7 @@
 
   <section class="px-3 py-10 md:px-4 md:py-14">
     <div class="w-full mx-auto flex max-w-7xl ">
-      <div class="relative overflow-hidden rounded-[2rem] bg-slate-900 px-6 py-12 shadow-2xl sm:px-12 md:px-16 lg:py-16">
+      <div class="relative overflow-hidden rounded-[1rem] sm:rounded-[2rem] bg-slate-900 px-6 py-8 sm:py-12 shadow-2xl sm:px-12 md:px-16 lg:py-16">
         <!-- Decorative Background Elements -->
         <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[var(--primary-color)] opacity-20 blur-[80px]"></div>
         <div class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-[var(--secondary-color)] opacity-20 blur-[80px]"></div>
@@ -735,9 +735,9 @@
           <div class="flex w-full flex-col sm:w-auto lg:min-w-[340px]">
             <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
               <div class="mb-6 flex justify-center">
-                <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-tr from-[var(--primary-color)] to-yellow-200 shadow-lg shadow-[var(--primary-color)]/20">
+                <div class="relative flex h-10 w-10 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-gradient-to-tr from-[var(--primary-color)] to-yellow-200 shadow-lg shadow-[var(--primary-color)]/20">
                   <div class="absolute inset-1 rounded-full border border-white/40"></div>
-                  <Gift class="h-10 w-10 text-slate-900" />
+                  <Gift class="sm:h-10 sm:w-10 h-5 w-5 text-slate-900" />
                 </div>
               </div>
               
@@ -760,7 +760,7 @@
                 </div>
                 <a
                   href="/login"
-                  class="group flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary-color)] px-6 py-4 text-sm font-bold text-slate-900 transition-all hover:scale-[1.02] hover:bg-yellow-400 hover:shadow-lg hover:shadow-[var(--primary-color)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-slate-900"
+                  class="group flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--primary-color)] px-6 py-4 text-sm font-bold text-white transition-all hover:scale-[1.02]  hover:shadow-lg hover:shadow-[var(--primary-color)]/30 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 focus:ring-offset-slate-900"
                 >
                   Start Referring Now
                   <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />

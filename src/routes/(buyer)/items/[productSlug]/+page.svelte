@@ -1469,7 +1469,7 @@
 
   <!-- Mobile Sticky Action Buttons -->
   <div
-    class="md:hidden fixed left-0 right-0 bottom-0 bg-white w-full border-t border-gray-200 z-40"
+    class="md:hidden fixed left-0 right-0 bottom-[60px] bg-white w-full border-t border-gray-200 z-40"
     style="padding-bottom: max(8px, env(safe-area-inset-bottom));"
   >
     <div class="px-3 sm:px-4 py-3">

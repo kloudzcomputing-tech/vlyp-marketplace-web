@@ -3,6 +3,7 @@
     import { page } from "$app/stores";
     import { onMount } from "svelte";
     import { ChevronDown, Filter, X, RotateCcw, Star } from "@lucide/svelte";
+    import MobileFilterSheet from "$lib/components/MobileFilterSheet.svelte";
     import ProductCard from "$lib/components/ProductCard.svelte";
     let mounted = false;
     onMount(() => {
@@ -146,74 +147,31 @@
     }
 </script>
 
+<!-- Mobile Filter Bottom Sheet (Meesho-style) -->
+<MobileFilterSheet
+    bind:filtersOpen
+    bind:selectedFilters
+    {categories}
+    {discounts}
+    {sellers}
+    {ratings}
+    {attributes}
+    onApply={parseUrlParams}
+    onClear={clearAllFilters}
+    {toggleFilter}
+/>
+
 <div class="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-    <div class="flex flex-col lg:flex-row">
-        <!-- Mobile Filter Button -->
-        <div
-            class="lg:hidden sticky top-0 z-30 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm"
-        >
-            <div class="px-4 py-4 flex items-center justify-between">
-                <div class="flex-1">
-                    <h1 class="text-xl font-bold text-gray-900 tracking-tight">
-                        Filters
-                    </h1>
-                    {#if activeFilterCount > 0}
-                        <p class="text-xs text-gray-500 mt-0.5">
-                            {activeFilterCount}
-                            {activeFilterCount === 1 ? "filter" : "filters"} active
-                        </p>
-                    {/if}
-                </div>
-                <button
-                    type="button"
-                    onclick={() => (filtersOpen = !filtersOpen)}
-                    class="relative flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 shadow-sm hover:shadow-md active:scale-95"
-                >
-                    <Filter class="w-4 h-4" />
-                    <span>Filters</span>
-                    {#if activeFilterCount > 0}
-                        <span
-                            class="absolute -top-1 -right-1 w-5 h-5 bg-[var(--primary-color)] text-white text-xs font-bold rounded-full flex items-center justify-center"
-                        >
-                            {activeFilterCount}
-                        </span>
-                    {/if}
-                </button>
-            </div>
-        </div>
+    <div class="flex flex-col lg:flex-row mx-auto px-3 md:px-4  max-w-7xl items">
 
         <!-- Filter Sidebar -->
         <aside
-            class="fixed lg:sticky top-0 left-0 z-50 lg:z-auto w-80 lg:w-72 h-full lg:h-screen bg-white border-r border-gray-200 transform transition-transform duration-300 ease-out {filtersOpen
-                ? 'translate-x-0'
-                : '-translate-x-full lg:translate-x-0'} lg:overflow-y-auto overflow-y-auto shadow-xl lg:shadow-none"
+            class="hidden sm:block sm:sticky top-0 left-0 z-auto w-72 h-screen bg-white border-r border-gray-200 overflow-y-auto shadow-none"
         >
             <div
-                class="p-5 sm:p-6 lg:p-8 space-y-6 lg:space-y-8 h-full overflow-y-auto custom-scrollbar"
+                class="p-6 lg:p-8 space-y-6 lg:space-y-8 h-full overflow-y-auto custom-scrollbar"
+                style="padding-left: 0px;"
             >
-                <!-- Mobile Header -->
-                <div
-                    class="flex items-center justify-between lg:hidden pb-5 border-b border-gray-200"
-                >
-                    <div>
-                        <h2 class="text-xl font-bold text-gray-900">Filters</h2>
-                        {#if activeFilterCount > 0}
-                            <p class="text-xs text-gray-500 mt-0.5">
-                                {activeFilterCount}
-                                {activeFilterCount === 1 ? "filter" : "filters"}
-                                active
-                            </p>
-                        {/if}
-                    </div>
-                    <button
-                        type="button"
-                        onclick={() => (filtersOpen = false)}
-                        class="p-2 text-gray-400 hover:text-gray-600 transition-all duration-200 rounded-lg hover:bg-gray-100"
-                        aria-label="Close filters"
-                    >
-                        <X class="w-5 h-5" />
-                    </button>
-                </div>
 
                 <!-- Clear Filters Button -->
                 {#if activeFilterCount > 0}
@@ -574,15 +532,7 @@
             </div>
         </aside>
 
-        <!-- Mobile Overlay -->
-        {#if filtersOpen}
-            <button
-                type="button"
-                class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
-                onclick={() => (filtersOpen = false)}
-                aria-label="Close filters overlay"
-            ></button>
-        {/if}
+
 
         <!-- Main Content -->
         <main class="flex-1 w-full min-w-0">

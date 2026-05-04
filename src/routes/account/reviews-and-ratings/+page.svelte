@@ -3,7 +3,7 @@
     let reviews = data?.reviews;
 </script>
 
-<div class="space-y-6 p-6">
+<div class="space-y-6 sm:p-6 sm:pb-6">
     <!-- Header -->
     <div>
         <h1 class="text-2xl font-light text-gray-900">Reviews and Ratings</h1>

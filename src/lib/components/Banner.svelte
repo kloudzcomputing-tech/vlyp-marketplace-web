@@ -91,10 +91,10 @@
       </button>
 
       <!-- Dots Indicator -->
-      <div class="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/15 px-3 py-2 backdrop-blur-sm">
+      <div class="absolute bottom-2 md:bottom-4 left-1/2 z-20 hidden sm:flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/15 px-3 py-2 backdrop-blur-sm ">
         {#each banners as _, i}
           <button
-            class="h-2.5 w-2.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/70 focus:ring-offset-0 {currentSlide === i ? 'w-6 bg-white' : 'bg-white/45 hover:bg-white/70'}"
+            class="h-1 w-1 sm:h-2.5 sm:w-2.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/70 focus:ring-offset-0 {currentSlide === i ? 'w-6 sm:w-6 bg-white' : 'bg-white/45 hover:bg-white/70'}"
             aria-label={`Go to slide ${i + 1}`}
             on:click={() => goToSlide(i)}
           ></button>
