@@ -23,7 +23,10 @@
   import ReelCartCheckout from "../reels/ReelCartCheckout.svelte";
   import { addToCart } from "$lib/stores/cart";
   import { goto } from "$app/navigation";
+  import LoginModal from "$lib/components/auth/LoginModal.svelte";
   let { reel, updateMatrix, user } = $props();
+
+  let openLoginModal = $state(false);
 
   let products = $state(reel?.products || []);
   let showComments = $state(false);
@@ -498,7 +501,16 @@
             <!-- Actions -->
             <div class="flex flex-col gap-2">
               <button
-                class="px-4 py-2 bg-[var(--primary-color)]  text-white text-xs font-bold rounded-full hover:bg-lime-400 transition-all"
+                onclick={() => {
+                  if (!user) {
+                    openLoginModal = true;
+                    return;
+                  }
+                  showCart = true;
+                  showComments = false;
+                  showCartPanel = true;
+                }}
+                class="px-4 py-2 bg-[var(--primary-color)] text-white text-xs font-bold rounded-full hover:bg-[var(--primary-color-hover)] transition-all"
               >
                 BUY NOW
               </button>
@@ -537,9 +549,9 @@
           : 'translate-y-full invisible md:translate-y-0 md:visible'}"
       >
         <div class="h-full overflow-y-auto scroll-smooth scrollbar-hide">
-          <div class="relative {showComments ? '' : 'px-4 py-5'}">
-            <!-- Close button for mobile (hidden when comments are active since they have their own) -->
-            {#if !showComments}
+          <div class="relative {showComments || showCart ? '' : 'px-4 py-5'}">
+            <!-- Close button for mobile (hidden when comments/checkout are active since they have their own) -->
+            {#if !showComments && !showCart}
             <button
               onclick={() => (showCartPanel = false)}
               class="md:hidden absolute top-4 right-4 z-50 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-200 transition-all"
@@ -557,7 +569,7 @@
               <ReelCartCheckout
                 product={products[currentIndex]}
                 {user}
-                on:close={() => (showCart = false)}
+                onclose={() => { showCart = false; showCartPanel = false; }}
               />
             {:else}
               <ReelProductCard
@@ -600,3 +612,12 @@
     </div>
   </div>
 </div>
+
+<LoginModal
+  open={openLoginModal}
+  onClose={() => (openLoginModal = false)}
+  onLoggedIn={() => {
+    openLoginModal = false;
+    window.location.reload();
+  }}
+/>

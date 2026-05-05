@@ -1,10 +1,10 @@
 <script>
-    import { createEventDispatcher, onMount } from "svelte";
+    import { onMount } from "svelte";
     import { goto } from "$app/navigation";
     import AddressModal from "$lib/components/address/AddressModal.svelte";
+    import { MapPin, X } from "@lucide/svelte";
 
-    let { product, user } = $props();
-    const dispatch = createEventDispatcher();
+    let { product, user, onclose } = $props();
 
     /* ---------------- STATE ---------------- */
     let qty = $state(1);
@@ -13,6 +13,7 @@
     let cod = $state(false);
     let showAddAddress = $state(false);
     let isLoading = $state(false);
+    let showAddressSelector = $state(false);
 
     /* ---------------- BILL CALCULATION ---------------- */
     const itemTotalOriginal = $derived(
@@ -25,9 +26,11 @@
 
     const discount = $derived(itemTotalOriginal - itemTotalSelling);
 
+    const deliveryCharge = $derived(40);
+
     const tax = $derived(0); // 👉 change later if GST applied
 
-    const total = $derived(itemTotalSelling + tax);
+    const total = $derived(itemTotalSelling + tax + deliveryCharge);
 
     /* ---------------- LOAD ADDRESSES ---------------- */
     async function loadAddresses() {
@@ -55,7 +58,14 @@
 
     /* ---------------- ACTIONS ---------------- */
     function close() {
-        dispatch("close");
+        if (onclose) onclose();
+    }
+
+    /* ---------------- FORMAT ADDRESS ---------------- */
+    function formatAddress(addr) {
+        if (!addr) return "";
+        const parts = [addr.line1, addr.city, addr.state].filter(Boolean);
+        return parts.join(", ");
     }
 
     /* ---------------- CREATE ORDER ---------------- */
@@ -121,7 +131,7 @@
             }
 
             if (!selectedAddress) {
-                alert("Please select address");
+                alert("Please select an address");
                 return;
             }
 
@@ -180,115 +190,161 @@
     });
 </script>
 
-<!-- ================= UI ================= -->
-<div class="h-full flex flex-col bg-white">
+<!-- ================= Quick Checkout UI ================= -->
+<div class="flex flex-col h-full bg-white">
 
     <!-- Header -->
-    <div class="flex items-center justify-between pb-3 border-b">
-        <h2 class="font-bold text-lg">Your Order</h2>
-        <button onclick={close} class="text-gray-500 text-lg">✕</button>
+    <div class="flex items-center justify-between px-5 pt-5 pb-4 border-b border-slate-100">
+        <h2 class="text-xl font-bold text-slate-900 tracking-tight">Quick Checkout</h2>
+        <button
+            onclick={close}
+            class="w-9 h-9 rounded-full border border-slate-200 bg-slate-50 grid place-items-center text-slate-500 cursor-pointer transition-all duration-200 hover:bg-slate-100 hover:text-slate-700 hover:border-slate-300"
+            aria-label="Close checkout"
+        >
+            <X size={18} strokeWidth={2.5} />
+        </button>
     </div>
 
-    <!-- Product -->
-    <div class="flex gap-3 py-4">
-        <img src={product?.image_url} alt={product?.title}
-            class="w-16 h-16 rounded-lg object-cover" />
+    <!-- Scrollable Content -->
+    <div class="flex-1 overflow-y-auto px-5 py-4 space-y-5 scrollbar-hide">
 
-        <div class="flex-1">
-            <p class="font-semibold text-sm">{product?.title}</p>
-            <p class="text-gray-500 text-xs">₹{product?.selling_price}</p>
+        <!-- Product Card -->
+        <div class="flex items-center gap-4 bg-slate-50 rounded-2xl p-4">
+            <div class="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-slate-200">
+                <img
+                    src={product?.image_url}
+                    alt={product?.title}
+                    class="w-full h-full object-cover"
+                />
+            </div>
+            <div class="flex-1 min-w-0">
+                <p class="font-semibold text-slate-900 text-base truncate">{product?.title}</p>
+                <p class="text-sm text-slate-500 mt-0.5 capitalize">{product?.category || "Fashion"}</p>
+                <p class="text-lg font-bold text-[var(--primary-color)] mt-1">₹{product?.selling_price}</p>
+            </div>
         </div>
-    </div>
 
-    <!-- Quantity -->
-    <div class="flex items-center justify-between py-3 border-t">
-        <span class="text-sm font-medium">Quantity</span>
-
-        <div class="flex items-center gap-3">
-            <button class="px-2 py-1 border rounded"
-                onclick={() => qty > 1 && qty--}>−</button>
-
-            <span class="font-semibold">{qty}</span>
-
-            <button class="px-2 py-1 border rounded"
-                onclick={() => qty++}>+</button>
+        <!-- Quantity Selector -->
+        <div class="flex items-center justify-between py-3">
+            <span class="text-sm font-medium text-slate-700">Quantity</span>
+            <div class="flex items-center gap-3">
+                <button
+                    class="w-8 h-8 rounded-full border border-slate-200 bg-white grid place-items-center text-slate-600 font-medium text-lg transition-all hover:bg-slate-50 hover:border-slate-300 disabled:opacity-30"
+                    onclick={() => qty > 1 && qty--}
+                    disabled={qty <= 1}
+                >−</button>
+                <span class="font-bold text-slate-900 w-6 text-center">{qty}</span>
+                <button
+                    class="w-8 h-8 rounded-full border border-slate-200 bg-white grid place-items-center text-slate-600 font-medium text-lg transition-all hover:bg-slate-50 hover:border-slate-300"
+                    onclick={() => qty++}
+                >+</button>
+            </div>
         </div>
-    </div>
 
-    <!-- Address -->
-    {#if user}
-        <div class="py-3 border-t space-y-2">
-            <div class="flex items-center justify-between">
-                <p class="text-sm font-medium">Select Address</p>
+        <!-- Delivery Address -->
+        {#if user}
+            <div class="bg-slate-50 rounded-2xl p-4">
+                {#if isLoading}
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 animate-pulse"></div>
+                        <div class="flex-1 space-y-2">
+                            <div class="h-3 bg-slate-200 rounded animate-pulse w-24"></div>
+                            <div class="h-4 bg-slate-200 rounded animate-pulse w-full"></div>
+                        </div>
+                    </div>
+                {:else if addresses.length === 0}
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-white border border-slate-200 grid place-items-center text-slate-400">
+                                <MapPin size={18} />
+                            </div>
+                            <p class="text-sm text-slate-500">No address found</p>
+                        </div>
+                        <button
+                            class="text-sm font-semibold text-[var(--primary-color)] hover:underline"
+                            onclick={() => (showAddAddress = true)}
+                        >
+                            ADD
+                        </button>
+                    </div>
+                {:else if selectedAddress}
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-full bg-white border border-slate-200 grid place-items-center text-slate-400 flex-shrink-0 mt-0.5">
+                            <MapPin size={18} />
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Delivering to</p>
+                            <p class="text-sm font-medium text-slate-800 leading-snug">{formatAddress(selectedAddress)}</p>
+                        </div>
+                        <button
+                            class="text-sm font-semibold text-[var(--primary-color)] flex-shrink-0 hover:underline mt-3"
+                            onclick={() => (showAddressSelector = !showAddressSelector)}
+                        >
+                            CHANGE
+                        </button>
+                    </div>
 
-                <button class="text-xs text-blue-600 font-semibold"
-                    onclick={() => (showAddAddress = true)}>
-                    + Add Address
-                </button>
+                    <!-- Address Selector Dropdown -->
+                    {#if showAddressSelector}
+                        <div class="mt-3 pt-3 border-t border-slate-200 space-y-2">
+                            {#each addresses as addr}
+                                <button
+                                    class="w-full text-left p-3 rounded-xl border transition-all duration-200 text-sm
+                                    {selectedAddress?.id === addr.id
+                                        ? 'border-[var(--primary-color)] bg-[var(--primary-color)]/5'
+                                        : 'border-slate-200 bg-white hover:border-slate-300'}"
+                                    onclick={() => { selectedAddress = addr; showAddressSelector = false; }}
+                                >
+                                    <p class="font-medium text-slate-800">{addr.label}</p>
+                                    <p class="text-slate-500 text-xs mt-0.5">{formatAddress(addr)}</p>
+                                </button>
+                            {/each}
+                            <button
+                                class="w-full text-center p-2.5 rounded-xl border border-dashed border-slate-300 text-sm font-medium text-slate-500 hover:border-[var(--primary-color)] hover:text-[var(--primary-color)] transition-all"
+                                onclick={() => (showAddAddress = true)}
+                            >
+                                + Add New Address
+                            </button>
+                        </div>
+                    {/if}
+                {/if}
             </div>
 
-            {#if isLoading}
-                <p class="text-xs text-gray-500">Loading...</p>
+            <!-- Payment Mode -->
+            <div class="flex items-center gap-3 py-1">
+                <label class="flex items-center gap-2.5 cursor-pointer">
+                    <input
+                        type="checkbox"
+                        bind:checked={cod}
+                        class="w-4.5 h-4.5 rounded border-slate-300 text-[var(--primary-color)] focus:ring-[var(--primary-color)] cursor-pointer"
+                    />
+                    <span class="text-sm font-medium text-slate-700">Cash on Delivery</span>
+                </label>
+            </div>
+        {/if}
 
-            {:else if addresses.length === 0}
-                <p class="text-xs text-gray-500">No address found</p>
-
-            {:else}
-                {#each addresses as addr}
-                    <div
-                        class="p-2 border rounded cursor-pointer text-xs transition
-                        {selectedAddress?.id === addr.id
-                            ? 'border-black bg-gray-50'
-                            : 'border-gray-200'}"
-                        onclick={() => (selectedAddress = addr)}
-                    >
-                        <p class="font-medium">{addr.label}</p>
-                        <p class="text-gray-500">
-                            {addr.line1}, {addr.city}, {addr.state}
-                        </p>
-                    </div>
-                {/each}
-            {/if}
-        </div>
-
-        <!-- Payment -->
-        <div class="py-3 border-t flex items-center gap-2">
-            <input type="checkbox" bind:checked={cod} />
-            <span class="text-sm">Cash on Delivery</span>
-        </div>
-    {/if}
-
-    <!-- Bill Summary -->
-    <div class="border-t py-4 space-y-2 text-sm">
-        <div class="flex justify-between">
-            <span class="text-gray-600">Item total</span>
-            <span>₹{itemTotalOriginal}</span>
-        </div>
-
-        <div class="flex justify-between">
-            <span class="text-gray-600">Discount</span>
-            <span class="text-green-600">-₹{discount}</span>
-        </div>
-
-        <div class="flex justify-between">
-            <span class="text-gray-600">Tax</span>
-            <span>₹{tax}</span>
-        </div>
-
-        <div class="flex justify-between font-semibold text-base border-t pt-2">
-            <span>Total</span>
-            <span>₹{total}</span>
+        <!-- Total Section -->
+        <div class="border-t border-slate-100 pt-4 space-y-1">
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Total Payable</span>
+                <span class="text-2xl font-bold text-slate-900">₹{total}</span>
+            </div>
+            <p class="text-xs text-slate-400">
+                Includes ₹{deliveryCharge} delivery & handling charges
+            </p>
         </div>
     </div>
 
-    <!-- Button -->
-    <button
-        onclick={checkout}
-        class="mt-auto w-full bg-black text-white py-3 rounded-xl font-semibold disabled:opacity-50"
-        disabled={!user}
-    >
-        Proceed to Pay
-    </button>
+    <!-- Pay Button - Fixed Bottom -->
+    <div class="px-5 py-4 pb-[max(16px,env(safe-area-inset-bottom))] bg-white border-t border-slate-100">
+        <button
+            onclick={checkout}
+            class="w-full py-4 rounded-full bg-[var(--primary-color)] hover:bg-[var(--primary-color-hover)] text-white text-base font-bold transition-all duration-300 shadow-lg shadow-[var(--primary-color)]/30 hover:shadow-xl hover:shadow-[var(--primary-color)]/40 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
+            disabled={!user}
+        >
+            Pay & Place Order
+        </button>
+    </div>
 </div>
 
 <!-- Address Modal -->
