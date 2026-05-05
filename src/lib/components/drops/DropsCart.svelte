@@ -449,7 +449,7 @@
             <!-- Avatar with purple ring -->
             <div class="w-8 h-8 sm:w-12 sm:h-12 rounded-full border-2 border-[var(--primary-color)] overflow-hidden flex-shrink-0">
               <img
-                src={reel?.store?.logo_url || "https://placehold.co/48x48/7c3aed/white?text=S"}
+                src={reel?.store?.logo_url || "https://plus.unsplash.com/premium_photo-1688676796006-bbd1599bbfb6?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
                 alt={reel?.store?.name || "Store"}
                 class="w-full h-full object-cover"
               />
@@ -465,7 +465,7 @@
             </button>
           </div>
           <!-- Caption -->
-          <p class="text-white text-sm line-clamp-2 sm:max-w-auto max-w-[230px]">{reel?.caption || "Loving this new cotton tee! Super comfy and stylish. #fashion #vlyp"}</p>
+          <p class="text-white text-sm line-clamp-2 sm:max-w-none max-w-[230px]">{reel?.caption || "Loving this new cotton tee! Super comfy and stylish. #fashion #vlyp"}</p>
         </div>
 
         <!-- Mobile Product Card Overlay -->
@@ -537,19 +537,21 @@
           : 'translate-y-full invisible md:translate-y-0 md:visible'}"
       >
         <div class="h-full overflow-y-auto scroll-smooth scrollbar-hide">
-          <div class="relative px-4 py-5">
-            <!-- Close button for mobile -->
+          <div class="relative {showComments ? '' : 'px-4 py-5'}">
+            <!-- Close button for mobile (hidden when comments are active since they have their own) -->
+            {#if !showComments}
             <button
               onclick={() => (showCartPanel = false)}
               class="md:hidden absolute top-4 right-4 z-50 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-200 transition-all"
             >
               <X size={20} strokeWidth={2.5} />
             </button>
+            {/if}
             {#if showComments}
               <ReelComments
                 reelId={reel?.reel_media_id}
                 {user}
-                on:close={() => (showComments = false)}
+                on:close={() => { showComments = false; showCartPanel = false; }}
               />
             {:else if showCart}
               <ReelCartCheckout
